@@ -24,6 +24,9 @@ class CaveObject:
         currentPoint = self.getPoint()
         anotherObjectPoint = anotherCaveObject.getPoint()
         if (currentPower  > anotherObjectPower):
-            self.setPower(currentPoint + anotherObjectPoint)
+            self.setPoint(currentPoint + anotherObjectPoint)
         elif (currentPower < anotherObjectPower):
             anotherCaveObject.setPoint(currentPoint + anotherObjectPoint)
+
+    def __str__(self):
+        return f"(Power:{self.getPower()},Point:{self.getPoint()})"
