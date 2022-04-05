@@ -1,5 +1,5 @@
 
-class Creature:
+class CaveObject:
 
     def __init__(self,power,point):
         self.__power=power
@@ -17,16 +17,16 @@ class Creature:
     def getPower(self):
         return self.__power
 
-    def encounter(self, anotherCreature):
-        assert isinstance(anotherCreature, Creature), "Creature object's type is not valid. Program is terminated!"
-        anotherObjectPower=anotherCreature.getPower()
+    def encounter(self,anotherCaveObject):
+        assert isinstance(anotherCaveObject,CaveObject), "Cave object's type is not valid. Program is terminated!"
+        anotherObjectPower=anotherCaveObject.getPower()
         currentPower=self.getPower()
         currentPoint = self.getPoint()
-        anotherObjectPoint = anotherCreature.getPoint()
+        anotherObjectPoint = anotherCaveObject.getPoint()
         if (currentPower  > anotherObjectPower):
             self.setPoint(currentPoint + anotherObjectPoint)
         elif (currentPower < anotherObjectPower):
-            anotherCreature.setPoint(currentPoint + anotherObjectPoint)
+            anotherCaveObject.setPoint(currentPoint + anotherObjectPoint)
 
-    def getStringFormat(self): # TODO: is it necessary? Will be checked later
-       return f"(Power:{self.getPower()},Point:{self.getPoint()})"
+    def __str__(self):
+        return f"(Power:{self.getPower()},Point:{self.getPoint()})"

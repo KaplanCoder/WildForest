@@ -1,17 +1,14 @@
-from Creature import Creature
+import CaveObject
 
 
 class Cave:
+
+
     def __init__(self,rowSize,columnSize):
         self.__rowSize=rowSize
         self.__columnSize=columnSize
-        self.__caveList = [[None for j in range(columnSize)] for i in range(rowSize)] # initialize two-dimension empty array
+        self.__caveList = [["0" for j in range(columnSize)] for i in range(rowSize)] # initialize two-dimension empty array
 
-    def getColumnSize(self):
-        return self.__columnSize
-
-    def getRowSize(self):
-        return self.__rowSize
 
     def getCaveList(self):
         return self.__caveList
@@ -24,29 +21,33 @@ class Cave:
             return False
         return True
 
-    def findCreature(self, index):
+    def getCaveObject(self,index):
         caveList = self.getCaveList()
         self.areIndexesValid(index, caveList, )
         return caveList[index]
 
 
-    def addCreature(self, creature, rowIndex, columnIndex):
-        assert isinstance(creature, Creature), "Creature object's type is not valid. Program is terminated!"
+    def addCaveObject(self, caveObject,rowIndex,columnIndex):
+        if not (isinstance(caveObject,CaveObject)):
+            return False
         if not (self.areIndexesValid(rowIndex,columnIndex)):
             return False
         caveList = self.getCaveList()
-        caveList[rowIndex][columnIndex]= creature # TODO: warning occured. will be checked latter
+        caveList[rowIndex][columnIndex]=caveObject
         return True
 
-    def removeCreature(self, rowIndex, columnIndex):
+    def removeCaveObject(self,rowIndex,columnIndex):
         caveList = self.getCaveList()
         if not  (self.areIndexesValid(rowIndex, columnIndex)):
             return False
         else:
-            caveList[rowIndex][columnIndex]=None
+            self.__caveList[rowIndex][columnIndex]=0 # can be used "None" instead of 0 value
             return True
 
+    def print(self):
+        pass # TODO: print function will be added
 
-cave=Cave(5,6)
-cave.addCreature(Creature(4,5),2,2)
-print("finish")
+
+
+
+
