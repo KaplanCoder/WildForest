@@ -7,7 +7,7 @@ class Cave:
     def __init__(self,rowSize,columnSize):
         self.__rowSize=rowSize
         self.__columnSize=columnSize
-        self.__caveList = [["0" for j in range(columnSize)] for i in range(rowSize)] # initialize two-dimension empty array
+        self.__caveList = [[None for j in range(columnSize)] for i in range(rowSize)] # initialize two-dimension empty array
 
 
     def getCaveList(self):
@@ -41,7 +41,7 @@ class Cave:
         if not  (self.areIndexesValid(rowIndex, columnIndex)):
             return False
         else:
-            self.__caveList[rowIndex][columnIndex]=0 # can be used "None" instead of 0 value
+            caveList[rowIndex][columnIndex]=None
             return True
 
     def print(self):
