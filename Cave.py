@@ -9,6 +9,11 @@ class Cave:
         self.__columnSize=columnSize
         self.__caveList = [[None for j in range(columnSize)] for i in range(rowSize)] # initialize two-dimension empty array
 
+    def getColumnSize(self):
+        return self.__columnSize
+
+    def getRowSize(self):
+        return self.__rowSize
 
     def getCaveList(self):
         return self.__caveList
