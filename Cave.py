@@ -2,8 +2,6 @@ from Creature import Creature
 
 
 class Cave:
-
-
     def __init__(self,rowSize,columnSize):
         self.__rowSize=rowSize
         self.__columnSize=columnSize
