@@ -6,6 +6,8 @@ class Cave:
     __emptyObject=None
 
     def __init__(self,rowSize,columnSize):
+        assert rowSize >= 0, "creature's health can not be negative!"
+        assert columnSize >= 0, "creature's point can not be negative!"
         self.__rowSize=rowSize
         self.__columnSize=columnSize
         self.__caveList = [[self.__emptyObject for j in range(columnSize)] for i in range(rowSize)] # initialize two-dimension empty array

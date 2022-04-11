@@ -2,6 +2,8 @@
 class Creature:
 
     def __init__(self,health,point):
+        assert health >= 0, "creature's health can not be negative!"
+        assert self.__health >= 0, "creature's point can not be negative!"
         self.__health=health
         self.__point=point
 
