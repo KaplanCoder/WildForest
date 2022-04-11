@@ -3,7 +3,7 @@ from Creature import Creature
 
 
 class CaveView:
-
+     # TODO: attributes of a class can be changed later. is it a  good approach?
     __caveDelimeter = "-" * 5
 
     __creatureDelimeter = " " * 5
