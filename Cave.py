@@ -24,10 +24,11 @@ class Cave:
             return False
         return True
 
-    def findCreature(self, index):
+    def findCreature(self, rowIndex,columnIndex):
         caveList = self.getCaveList()
-        self.areIndexesValid(index, caveList, )
-        return caveList[index]
+        if (self.areIndexesValid(rowIndex, columnIndex)):
+            return caveList[rowIndex][columnIndex]
+        return None
 
 
     def addCreature(self, creature, rowIndex, columnIndex):
