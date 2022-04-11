@@ -7,6 +7,9 @@ class Creature:
         self.__health=health
         self.__point=point
 
+    def isAlive(self):
+        return (self.__health > 0)
+
     def setPoint(self,newPoint):
         self.__point=newPoint
 
