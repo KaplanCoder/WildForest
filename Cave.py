@@ -2,10 +2,13 @@ from Creature import Creature
 
 
 class Cave:
+
+    __emptyObject=None
+
     def __init__(self,rowSize,columnSize):
         self.__rowSize=rowSize
         self.__columnSize=columnSize
-        self.__caveList = [[None for j in range(columnSize)] for i in range(rowSize)] # initialize two-dimension empty array
+        self.__caveList = [[self.__emptyObject for j in range(columnSize)] for i in range(rowSize)] # initialize two-dimension empty array
 
     def getColumnSize(self):
         return self.__columnSize
@@ -44,10 +47,5 @@ class Cave:
         if not  (self.areIndexesValid(rowIndex, columnIndex)):
             return False
         else:
-            caveList[rowIndex][columnIndex]=None
+            caveList[rowIndex][columnIndex]=self.__emptyObject
             return True
-
-
-cave=Cave(5,6)
-cave.addCreature(Creature(4,5),2,2)
-print("finish")
