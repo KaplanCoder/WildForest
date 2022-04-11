@@ -3,7 +3,7 @@ from Creature import Creature
 
 class Cave:
 
-    __emptyObject=None
+    __emptyObject=[] # every cell can contain multiple creatures.
 
     def __init__(self,rowSize,columnSize):
         assert rowSize >= 0, "creature's health can not be negative!"
@@ -41,13 +41,19 @@ class Cave:
         if not (self.areIndexesValid(rowIndex,columnIndex)):
             return False
         caveList = self.getCaveList()
-        caveList[rowIndex][columnIndex]= creature # TODO: warning occured. will be checked latter
+        creatureCell= caveList[rowIndex][columnIndex]
+        creatureCell.append(creature) # TODO: warning occured. will be checked latter
         return True
 
-    def removeCreature(self, rowIndex, columnIndex):
+
+    def removeCreature(self, rowIndex, columnIndex, creature = None):
         caveList = self.getCaveList()
         if not  (self.areIndexesValid(rowIndex, columnIndex)):
             return False
         else:
-            caveList[rowIndex][columnIndex]=self.__emptyObject
+            creatureCell= caveList[rowIndex][columnIndex]
+            if creature is None:
+                creatureCell.pop()
+            else:
+                creatureCell.remove(creature)
             return True
