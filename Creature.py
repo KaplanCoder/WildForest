@@ -1,8 +1,8 @@
 
 class Creature:
 
-    def __init__(self,power,point):
-        self.__power=power
+    def __init__(self,health,point):
+        self.__health=health
         self.__point=point
 
     def setPoint(self,newPoint):
@@ -11,22 +11,26 @@ class Creature:
     def getPoint(self):
         return self.__point
 
-    def setPower(self,newPower):
-        self.__power=newPower
+    def setHealth(self,newHealth):
+        self.__health=newHealth
 
-    def getPower(self):
-        return self.__power
+    def getHealth(self):
+        return self.__health
 
     def encounter(self, anotherCreature):
         assert isinstance(anotherCreature, Creature), "Creature object's type is not valid. Program is terminated!"
-        anotherObjectPower=anotherCreature.getPower()
-        currentPower=self.getPower()
+        anotherObjectHealth=anotherCreature.getHealth()
+        currentHealth=self.getHealth()
         currentPoint = self.getPoint()
         anotherObjectPoint = anotherCreature.getPoint()
-        if (currentPower  > anotherObjectPower):
+        if (currentHealth  > anotherObjectHealth):
             self.setPoint(currentPoint + anotherObjectPoint)
-        elif (currentPower < anotherObjectPower):
+            self.setHealth(currentHealth - anotherObjectHealth)
+            anotherObjectHealth.setHealth(0) # # It means that  another creature is death.
+        elif (currentHealth < anotherObjectHealth):
             anotherCreature.setPoint(currentPoint + anotherObjectPoint)
+            anotherObjectHealth.setHealth(anotherObjectHealth - currentHealth)
+            self.setHealth(0) # It means that  current creature is death.
 
     def getStringFormat(self): # TODO: is it necessary? Will be checked later
-       return f"(Power:{self.getPower()},Point:{self.getPoint()})"
+       return f"(Health:{self.getHealth()},Point:{self.getPoint()})"
