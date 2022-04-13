@@ -7,6 +7,9 @@ class Creature:
         self.__health=health
         self.__point=point
 
+    def isAlive(self):
+        return (self.__health > 0)
+
     def setPoint(self,newPoint):
         self.__point=newPoint
 
@@ -19,7 +22,11 @@ class Creature:
     def getHealth(self):
         return self.__health
 
-    def encounter(self, anotherCreature):
+    def fight(self, anotherCreature):
+        """
+        :param anotherCreature:
+        :return: it returns true if current creature wins the fight, otherwise it returns false
+        """
         assert isinstance(anotherCreature, Creature), "Creature object's type is not valid. Program is terminated!"
         anotherObjectHealth=anotherCreature.getHealth()
         currentHealth=self.getHealth()
@@ -28,11 +35,16 @@ class Creature:
         if (currentHealth  > anotherObjectHealth):
             self.setPoint(currentPoint + anotherObjectPoint)
             self.setHealth(currentHealth - anotherObjectHealth)
-            anotherObjectHealth.setHealth(0) # # It means that  another creature is death.
+            anotherObjectHealth.setHealth(0) # It means that  another creature is death.
+            return True
         elif (currentHealth < anotherObjectHealth):
             anotherCreature.setPoint(currentPoint + anotherObjectPoint)
             anotherObjectHealth.setHealth(anotherObjectHealth - currentHealth)
             self.setHealth(0) # It means that  current creature is death.
+            return False
+        else: # currentHealth == anotherObjectHealth
+            # two creatures neither gain points nor lose  health.
+            return False
 
     def getStringFormat(self): # TODO: is it necessary? Will be checked later
        return f"(Health:{self.getHealth()},Point:{self.getPoint()})"
