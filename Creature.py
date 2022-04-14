@@ -2,8 +2,8 @@
 class Creature:
 
     def __init__(self,health,point):
-        assert self.__point >= 0, "creature's health can not be negative!"
-        assert self.__health >= 0, "creature's point can not be negative!"
+        assert point >= 0, "creature's health can not be negative!"
+        assert health >= 0, "creature's point can not be negative!"
         self.__health=health
         self.__point=point
 
@@ -24,8 +24,9 @@ class Creature:
 
     def fight(self, anotherCreature):
         """
+        Todo: fight will be explained
         :param anotherCreature:
-        :return: it returns true if current creature wins the fight, otherwise it returns false
+        :return:
         """
         assert isinstance(anotherCreature, Creature), "Creature object's type is not valid. Program is terminated!"
         anotherObjectHealth=anotherCreature.getHealth()
@@ -35,16 +36,16 @@ class Creature:
         if (currentHealth  > anotherObjectHealth):
             self.setPoint(currentPoint + anotherObjectPoint)
             self.setHealth(currentHealth - anotherObjectHealth)
-            anotherObjectHealth.setHealth(0) # It means that  another creature is death.
-            return True
+            anotherCreature.setHealth(0) # It means that  another creature is death.
+            return 1
         elif (currentHealth < anotherObjectHealth):
             anotherCreature.setPoint(currentPoint + anotherObjectPoint)
-            anotherObjectHealth.setHealth(anotherObjectHealth - currentHealth)
+            anotherCreature.setHealth(anotherObjectHealth - currentHealth)
             self.setHealth(0) # It means that  current creature is death.
-            return False
+            return -1
         else: # currentHealth == anotherObjectHealth
             # two creatures neither gain points nor lose  health.
-            return False
+            return 0
 
     def getStringFormat(self): # TODO: is it necessary? Will be checked later
        return f"(Health:{self.getHealth()},Point:{self.getPoint()})"
