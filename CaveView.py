@@ -1,4 +1,4 @@
-from Cave import Cave
+from WildForest import WildForest
 from Creature import Creature
 
 
@@ -14,7 +14,7 @@ class CaveView:
 
     __creatureStringLength = 10
 
-    def __init__(self,cave:Cave):
+    def __init__(self, cave:WildForest):
        self.__cave=cave
 
     def getCave(self):
@@ -47,7 +47,7 @@ class CaveView:
         return stringFormat
 
 
-cave=Cave(4,5)
+cave=WildForest(4, 5)
 c1=Creature(2,3)
 cave.addCreature(c1,3,1)
 view=CaveView(cave)
