@@ -7,7 +7,7 @@ class Movement(str,Enum):
     Down = "s"
     Up = "w"
 
-    ##deneme
+
 
 def move(xCoordinate, yCoordinate, moveTypeString):
     """
