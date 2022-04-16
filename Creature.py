@@ -1,11 +1,20 @@
 
 class Creature:
 
-    def __init__(self,health,point):
-        assert point >= 0, "creature's health can not be negative!"
-        assert health >= 0, "creature's point can not be negative!"
-        self.__health=health
-        self.__point=point
+    def __init__(self,health,point,name):
+        assert isinstance(name,str),"name must be string"
+        assert point >= 0, "creature's point can not be negative!"
+        assert health >= 0, "creature's health can not be negative!"
+        self.__health = health
+        self.__point = point
+        self.__name = name
+
+    def setName(self,newName):
+        self.__name=newName
+
+
+    def getName(self):
+        return self.__name
 
     def isAlive(self):
         return (self.__health > 0)
