@@ -1,4 +1,6 @@
 
+
+
 class Creature:
 
     def __init__(self,health,point,name):
@@ -26,7 +28,7 @@ class Creature:
         return self.__point
 
     def setHealth(self,newHealth):
-        self.__health=newHealth
+        self.__health = newHealth
 
     def getHealth(self):
         return self.__health
@@ -55,7 +57,6 @@ class Creature:
         else: # currentHealth == anotherObjectHealth
             # two creatures neither gain points nor lose  health.
             return 0
-
 
 
 c=Creature(30,40,"Bear")
