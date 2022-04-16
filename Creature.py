@@ -56,5 +56,6 @@ class Creature:
             # two creatures neither gain points nor lose  health.
             return 0
 
-    def getStringFormat(self): # TODO: is it necessary? Will be checked later
-       return f"(Health:{self.getHealth()},Point:{self.getPoint()})"
+
+
+c=Creature(30,40,"Bear")
