@@ -64,7 +64,8 @@ class WildForest:
                 self.addCreature(newRowIndex, newColumnIndex, currentCreature)
             elif (fightResult == -1):
                 self.removeCreature(rowIndex, columnIndex)
-            else:  # fightResult  == 0 --->  replace the creatures
+            else:  # fightResult  == 0 --->  replace the creatures' position
+                assert fightResult == 0, "Invalid fight result!"
                 self.addCreature(newRowIndex, newColumnIndex, currentCreature)
                 self.addCreature(rowIndex, columnIndex, anotherCreature)
             moveResult = fightResult
