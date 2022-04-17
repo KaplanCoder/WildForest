@@ -8,7 +8,6 @@ class Movement(str,Enum):
     Up = "w"
 
 
-
 def move(xCoordinate, yCoordinate, moveTypeString):
     """
     It takes  x-y coordinates and returns new coordinates

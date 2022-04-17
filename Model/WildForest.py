@@ -1,5 +1,5 @@
-from Creature import Creature
-import LocationMover
+from Model.Creature import Creature
+from Model.LocationMover import move
 
 class WildForest:
 
@@ -82,7 +82,7 @@ class WildForest:
         if (currentCreature is None):
             raise Exception("Creature is not found! Move operation cancelled!")
         # rowIndex is a  y-coordinate, columnIndex is a x-coordinate
-        newLocations=LocationMover.move(columnIndex,rowIndex,moveTypeString)
+        newLocations= move(columnIndex, rowIndex, moveTypeString)
         newRowIndex=newLocations[1]
         newColumnIndex=newLocations[0]
         if not (self.areIndexesValid(newRowIndex,newColumnIndex)):
