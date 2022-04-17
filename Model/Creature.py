@@ -58,5 +58,8 @@ class Creature:
             # two creatures neither gain points nor lose  health.
             return 0
 
+    def getViewFormat(self):
+        return self.__name
+
 
 c=Creature(30,40,"Bear")
