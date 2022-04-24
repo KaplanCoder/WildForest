@@ -33,14 +33,12 @@ class WildForestView:
 
 
     def  getStringFormatOfWildForest(self):
-        wildForest=self.getWildForest()
         stringFormat=""
-        rowSize=wildForest.getRowSize()
-        columnSize=wildForest.getColumnSize()
-        wildForestList=wildForest.getWildForestList()
+        rowSize=self.__wildForest.getRowSize()
+        columnSize=self.__wildForest.getColumnSize()
         for row in range(rowSize):
             for column in range(columnSize):
-                currentCell=wildForestList[row][column]
+                currentCell=self.__wildForestList[row][column]
                 stringFormat += self.getStringFormatOfCell(currentCell) + self.__wildForestDelimeter
             stringFormat += "\n"
         return stringFormat
