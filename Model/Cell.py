@@ -1,4 +1,4 @@
-
+from Creature import Creature
 
 class Cell:
 
@@ -14,6 +14,9 @@ class Cell:
     def getCreature(self):
         return self.__creature
 
+    def isEmpty(self):
+        return (self.__creature is None)
+
     def makeVisible(self):
         self.__isViewAllowed=True
 
@@ -24,3 +27,11 @@ class Cell:
         stringFormat=self.__emptyStringFormat if (self.__creature is None) else str(self.__creature)
         return stringFormat if self.__isViewAllowed else "Unknown"
 
+"""
+Testing
+c1=Cell(Creature(40,50,"Example"))
+print(c1.isEmpty())
+c1.setCreature(None)
+print(c1.isEmpty())
+
+"""
