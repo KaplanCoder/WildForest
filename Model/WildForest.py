@@ -129,8 +129,8 @@ class WildForest:
 
 
 
-
-"""WildForest testing
+"""
+#WildForest testing
 
 wildForest=WildForest(2,3)
 c1=Creature(50,20)
