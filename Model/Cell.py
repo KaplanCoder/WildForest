@@ -1,7 +1,8 @@
-from Creature import Creature
+
 
 class Cell:
 
+    __emptyStringFormat= "Safe"
 
     def __init__(self, creature = None):
         self.__creature=creature
@@ -20,6 +21,6 @@ class Cell:
         self.__isViewAllowed=False
 
     def __str__(self):
-        stringFormat="Safe" if (self.__creature is None) else str(self.__creature)
+        stringFormat=self.__emptyStringFormat if (self.__creature is None) else str(self.__creature)
         return stringFormat if self.__isViewAllowed else "Unknown"
 
