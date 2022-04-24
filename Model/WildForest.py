@@ -21,7 +21,7 @@ class WildForest:
     def getWildForestList(self):
         return self.__wildForestList
 
-    def areIndexesValid(self,rowIndex, columnIndex):
+    def __areIndexesValid(self, rowIndex, columnIndex):
         if (rowIndex >= self.getRowSize() or (rowIndex < 0)):
             return False
         if (columnIndex >= self.getColumnSize() or (columnIndex < 0)):
@@ -29,7 +29,7 @@ class WildForest:
         return True
 
     def findCreature(self, rowIndex,columnIndex):
-        if (self.areIndexesValid(rowIndex, columnIndex)):
+        if (self.__areIndexesValid(rowIndex, columnIndex)):
             return self.__wildForestList[rowIndex][columnIndex]
         return None
 
@@ -44,14 +44,14 @@ class WildForest:
 
     def addCreature(self,rowIndex, columnIndex,creature):
         assert isinstance(creature, Creature), "Creature object's type is not valid. Program is terminated!"
-        if not (self.areIndexesValid(rowIndex,columnIndex)):
+        if not (self.__areIndexesValid(rowIndex, columnIndex)):
             return False
         currentCell= self.__wildForestList[rowIndex][columnIndex]
         currentCell.setCreature(creature) # TODO: warning occured. will be checked latter
         return True
 
     def removeCreature(self, rowIndex, columnIndex):
-        if not  (self.areIndexesValid(rowIndex, columnIndex)):
+        if not  (self.__areIndexesValid(rowIndex, columnIndex)):
             return False
         else:
             currentCell = self.__wildForestList[rowIndex][columnIndex]
@@ -91,7 +91,7 @@ class WildForest:
         newLocations= move(columnIndex, rowIndex, moveTypeString)
         newRowIndex=newLocations[1]
         newColumnIndex=newLocations[0]
-        if not (self.areIndexesValid(newRowIndex,newColumnIndex)):
+        if not (self.__areIndexesValid(newRowIndex, newColumnIndex)):
             raise Exception("New locations are not valid  based on the movement. Move operation is cancelled! ")
         else:
             anotherCreature=self.findCreature(newRowIndex,newColumnIndex)
