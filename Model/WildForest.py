@@ -1,7 +1,7 @@
 import copy
 
 from Model.Creature import Creature
-from Model.LocationMover import move
+from Model.LocationMover import move,Movement
 from Model.Cell import Cell
 
 class WildForest:
@@ -22,6 +22,32 @@ class WildForest:
 
     def getWildForestList(self):
         return self.__wildForestList
+
+
+    def getNeighboringCells(self,rowIndex,columnIndex):
+        neighborsIndex=[]
+        neighboringCells=[]
+        # rowIndex is a  y-coordinate, columnIndex is a x-coordinate
+        # we check every movement direction of the current indexes
+        neighborsIndex.append(move(columnIndex,rowIndex,Movement.Right))
+        neighborsIndex.append(move(columnIndex, rowIndex, Movement.Left))
+        neighborsIndex.append(move(columnIndex, rowIndex, Movement.Up))
+        neighborsIndex.append(move(columnIndex, rowIndex, Movement.Down))
+        copyNeighborsIndex=copy.deepcopy(neighborsIndex)
+        for neighbor in copyNeighborsIndex:
+            newRowIndex=neighbor[1]
+            newColumnIndex=neighbor[0]
+            if not (self.__areIndexesValid(newRowIndex,newColumnIndex)):
+                neighborsIndex.remove(neighbor)
+            else:
+                currentCell=self.__wildForestList[newRowIndex][newColumnIndex]
+                if not (currentCell.isEmpty()):
+                    neighboringCells.append(currentCell)
+        return neighboringCells
+
+
+
+
 
     def __areIndexesValid(self, rowIndex, columnIndex):
         if (rowIndex >= self.getRowSize() or (rowIndex < 0)):
