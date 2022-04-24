@@ -1,6 +1,4 @@
 
-
-
 class Creature:
 
     def __init__(self,health,point,name):
@@ -61,7 +59,3 @@ class Creature:
 
     def __str__(self):
         return f'{self.__name}(H:{self.__health},P:{self.__point})'
-
-
-c=Creature(30,40,"Bear")
-print(c)
