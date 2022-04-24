@@ -71,6 +71,8 @@ class WildForest:
         currentCell.makeInvisible()
 
 
+
+
     def addCreature(self,rowIndex, columnIndex,creature):
         assert isinstance(creature, Creature), "Creature object's type is not valid. Program is terminated!"
         if not (self.__areIndexesValid(rowIndex, columnIndex)):
@@ -149,5 +151,4 @@ wildForest.moveCreature(0,2,"a")
 wildForest.moveCreature(1,1,"w")
 n=wildForest.getNeighboringCells(1,1)
 print("Worked!")
-
 """
