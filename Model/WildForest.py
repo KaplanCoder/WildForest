@@ -1,16 +1,15 @@
 from Model.Creature import Creature
 from Model.LocationMover import move
+from Model.Cell import Cell
 
 class WildForest:
-
-    __emptyObject=None
 
     def __init__(self,rowSize,columnSize):
         assert rowSize >= 0, "row size can not be negative!"
         assert columnSize >= 0, "column size can not be negative!"
         self.__rowSize=rowSize
         self.__columnSize=columnSize
-        self.__wildForestList = [[self.__emptyObject for j in range(columnSize)] for i in range(rowSize)] # initialize two-dimension empty array
+        self.__wildForestList = [[Cell() for j in range(columnSize)] for i in range(rowSize)] # initialize two-dimension empty array
 
 
     def getColumnSize(self):
@@ -30,32 +29,39 @@ class WildForest:
         return True
 
     def findCreature(self, rowIndex,columnIndex):
-        wildForestList = self.getWildForestList()
         if (self.areIndexesValid(rowIndex, columnIndex)):
-            return wildForestList[rowIndex][columnIndex]
+            return self.__wildForestList[rowIndex][columnIndex]
         return None
+
+    def makeVisibleToCell(self,rowIndex,columnIndex):
+        currentCell = self.__wildForestList[rowIndex][columnIndex]
+        currentCell.makeVisible()
+
+    def makeInvisibleToCell(self,rowIndex,columnIndex):
+        currentCell = self.__wildForestList[rowIndex][columnIndex]
+        currentCell.makeInvisible()
 
 
     def addCreature(self,rowIndex, columnIndex,creature):
         assert isinstance(creature, Creature), "Creature object's type is not valid. Program is terminated!"
         if not (self.areIndexesValid(rowIndex,columnIndex)):
             return False
-        wildForestList = self.getWildForestList()
-        wildForestList[rowIndex][columnIndex]= creature # TODO: warning occured. will be checked latter
+        currentCell= self.__wildForestList[rowIndex][columnIndex]
+        currentCell.setCreature(creature) # TODO: warning occured. will be checked latter
         return True
 
     def removeCreature(self, rowIndex, columnIndex):
-        wildForestList = self.getWildForestList()
         if not  (self.areIndexesValid(rowIndex, columnIndex)):
             return False
         else:
-            wildForestList[rowIndex][columnIndex]=self.__emptyObject
+            currentCell = self.__wildForestList[rowIndex][columnIndex]
+            currentCell.setCreature(None) # cell is removed from the cell
             return True
 
 
     def __moveOperation(self,currentCreature,anotherCreature,rowIndex,
                         columnIndex,newRowIndex,newColumnIndex):
-        assert currentCreature is not None, "current creature can not be None!"
+        assert currentCreature is not None, "current cell can not be None!"
         moveResult = None
         if anotherCreature is not None:
             fightResult = currentCreature.fight(anotherCreature)
