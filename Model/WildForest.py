@@ -30,7 +30,8 @@ class WildForest:
 
     def findCreature(self, rowIndex,columnIndex):
         if (self.__areIndexesValid(rowIndex, columnIndex)):
-            return self.__wildForestList[rowIndex][columnIndex]
+            cell=self.__wildForestList[rowIndex][columnIndex]
+            return cell.getCreature()
         return None
 
     def makeVisibleToCell(self,rowIndex,columnIndex):
