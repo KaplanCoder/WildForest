@@ -133,11 +133,11 @@ class WildForest:
 #WildForest testing
 
 wildForest=WildForest(2,3)
-c1=Creature(50,20)
-c2=Creature(20,10)
-c3=Creature(30,10)
-c4=Creature(60,40)
-c5=Creature(50,30)
+c1=Creature(50,20,"d")
+c2=Creature(20,10,"d")
+c3=Creature(30,10,"d")
+c4=Creature(60,40,"d")
+c5=Creature(50,30,"d")
 wildForest.addCreature(0,0,c1)
 wildForest.addCreature(0,1,c2)
 wildForest.addCreature(0,2,c3)
@@ -147,9 +147,7 @@ wildForest.moveCreature(0,0,"s")
 wildForest.moveCreature(0,1,"a")
 wildForest.moveCreature(0,2,"a")
 wildForest.moveCreature(1,1,"w")
-wildForest.moveCreature(0,0,"d")
-wildForest.moveCreature(0,0,"s")
-wildForest.moveCreature(-1,0,"s")
+n=wildForest.getNeighboringCells(1,1)
 print("Worked!")
 
 """
