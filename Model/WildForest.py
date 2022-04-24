@@ -1,3 +1,5 @@
+import copy
+
 from Model.Creature import Creature
 from Model.LocationMover import move
 from Model.Cell import Cell
