@@ -74,8 +74,6 @@ class WildForest:
         currentCell.makeInvisible()
 
 
-
-
     def addCreature(self,rowIndex, columnIndex,creature):
         assert isinstance(creature, Creature), "Creature object's type is not valid. Program is terminated!"
         if not (self.__areIndexesValid(rowIndex, columnIndex)):
@@ -83,6 +81,7 @@ class WildForest:
         currentCell= self.__wildForestList[rowIndex][columnIndex]
         currentCell.setCreature(creature) # TODO: warning occured. will be checked latter
         return True
+
 
     def removeCreature(self, rowIndex, columnIndex):
         if not  (self.__areIndexesValid(rowIndex, columnIndex)):
