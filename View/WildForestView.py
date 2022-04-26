@@ -18,8 +18,25 @@ class WildForestView:
     def __init__(self, wildForest:WildForest):
        self.__wildForest=wildForest
 
+
     def getWildForest(self):
         return self.__wildForest
+
+
+    def getStringFormatOfNeighboringCells(self, rowIndex, columnIndex):
+        """
+        It returns neighboring cells of the current cell based on the rowIndex and columnIndex
+        :param rowIndex:
+        :param columnIndex:
+        :return: neighboring cells as string format
+        """
+        infoString=""
+        neighboringCells=self.__wildForest.getNeighboringCells(rowIndex, columnIndex)
+        for neighboringCell in neighboringCells:
+            currentCreature=neighboringCell.getCreature()
+            infoString += "there is a " + str(currentCreature) + " nearby! \n"
+        return infoString
+
 
     def getStringFormatOfCell(self, cell):
         assert isinstance(cell, Cell), "Cell object's type is not valid. Program is terminated"
@@ -38,16 +55,20 @@ class WildForestView:
         columnSize=self.__wildForest.getColumnSize()
         for row in range(rowSize):
             for column in range(columnSize):
-                currentCell=self.__wildForestList[row][column]
+                currentCell=self.__wildForest.getCell(row,column)
                 stringFormat += self.getStringFormatOfCell(currentCell) + self.__wildForestDelimeter
             stringFormat += "\n"
         return stringFormat
 
 
+
+"""testing
 wildForest=WildForest(5, 5)
 c1=Creature(20,30,"Monster")
 c2=Creature(20,30,"Person")
-wildForest.addCreature(3,1,c1)
-wildForest.addCreature(4,2,c2)
+wildForest.addCreature(0,1,c1)
+wildForest.addCreature(1,0,c2)
 view=WildForestView(wildForest)
 print(view.getStringFormatOfWildForest())
+print(view.getStringFormatOfNeighboringCells(1, 1))
+"""
