@@ -46,7 +46,10 @@ class WildForest:
         return neighboringCells
 
 
-
+    def getCell(self,rowIndex,columnIndex):
+        if (self.__areIndexesValid(rowIndex, columnIndex)):
+            return self.__wildForestList[rowIndex][columnIndex]
+        return None
 
 
     def __areIndexesValid(self, rowIndex, columnIndex):
@@ -57,10 +60,10 @@ class WildForest:
         return True
 
     def findCreature(self, rowIndex,columnIndex):
-        if (self.__areIndexesValid(rowIndex, columnIndex)):
-            cell=self.__wildForestList[rowIndex][columnIndex]
-            return cell.getCreature()
-        return None
+        currentCell=self.getCell(rowIndex,columnIndex)
+        if currentCell is not None:
+            return currentCell.getCreature()
+        return currentCell
 
     def makeVisibleToCell(self,rowIndex,columnIndex):
         currentCell = self.__wildForestList[rowIndex][columnIndex]
