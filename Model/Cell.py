@@ -1,4 +1,4 @@
-from Creature import Creature
+from Model.Creature import Creature
 
 class Cell:
 
@@ -24,7 +24,7 @@ class Cell:
         self.__isViewAllowed=False
 
     def __str__(self):
-        stringFormat=self.__emptyStringFormat if (self.__creature is None) else str(self.__creature)
+        stringFormat=self.__emptyStringFormat if (self.__creature is None) else self.__creature.getName()
         return stringFormat if self.__isViewAllowed else "Unknown"
 
 """
