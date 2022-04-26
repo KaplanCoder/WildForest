@@ -58,4 +58,4 @@ class Creature:
 
 
     def __str__(self):
-        return f'{self.__name}(H:{self.__health},P:{self.__point})'
+        return f'{self.__name} (Health:{self.__health},Point:{self.__point})'
