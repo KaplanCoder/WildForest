@@ -33,7 +33,7 @@ class WildForestView:
         infoString=""
         neighboringCells=self.__wildForest.getNeighboringCells(rowIndex, columnIndex)
         for neighboringCell in neighboringCells:
-            currentCreature=neighboringCell.getCreature()
+            currentCreature=neighboringCell.getCreature() # TODO: does it make sense whether wild forest view should know the creature or not?
             infoString += "there is a " + str(currentCreature) + " nearby! \n"
         return infoString
 
