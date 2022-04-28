@@ -30,5 +30,8 @@ class WildForestMenuView:
     def printWildForest(cls,wildForestView):
         print(wildForestView.getStringFormatOfWildForest())
 
+    @classmethod
+    def printNeighboringCells(cls,wildForestView,rowIndex,columnIndex): # TODO: it will be checked later
+        print(wildForestView.getStringFormatOfNeighboringCells(rowIndex,columnIndex))
 
 
