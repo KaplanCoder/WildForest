@@ -111,7 +111,7 @@ class WildForest:
         else:
             self.removeCreature(rowIndex, columnIndex)
             self.addCreature(newRowIndex, newColumnIndex, currentCreature)
-            moveResult = 1
+            moveResult = 2
         return moveResult
 
 
