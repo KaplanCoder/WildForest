@@ -1,10 +1,6 @@
-from View.WildForestView import WildForestView
-
+from Model.LocationMover import Movement
 
 class WildForestMenuView:
-
-    def __init__(self,wildForestView:WildForestView):
-        self.__wildForestView=wildForestView
 
     @classmethod
     def printHitWall(cls):
@@ -35,3 +31,13 @@ class WildForestMenuView:
         print(wildForestView.getStringFormatOfNeighboringCells(rowIndex,columnIndex))
 
 
+    @classmethod
+    def getDirectionFromUser(self):
+        print("What is your move?")
+        direction=input("Choose right (d), left (a), up (w) or down (s) : ")
+        if (isinstance(direction,str)):
+           direction=direction.lower()
+           enumList=[movementKey.value for movementKey in Movement]
+           if (direction in enumList):
+               return direction
+        raise Exception("There is no such direction! Choose right (d), left (a), up (w) or down (s).")
