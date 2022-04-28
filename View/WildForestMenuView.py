@@ -19,9 +19,16 @@ class WildForestMenuView:
         print(f"Number of steps taken so far is {steps}")
 
     @classmethod
-    def printFound(cls, name):
+    def printWinStatus(cls, name):
         print(f"Yay! You found the {name}!")
 
+    @classmethod
+    def printLoseStatus(cls):
+        print("Sorry, You died! Game over!")
+
+    @classmethod
+    def printWildForest(cls,wildForestView):
+        print(wildForestView.getStringFormatOfWildForest())
 
 
 
