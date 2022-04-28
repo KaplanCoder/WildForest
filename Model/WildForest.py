@@ -25,6 +25,13 @@ class WildForest:
 
 
     def getNeighboringCells(self,rowIndex,columnIndex):
+        """
+        It finds the non-empty neighboring cells of the current cell based on rowIndex and columndIndex
+
+        :param rowIndex:
+        :param columnIndex:
+        :return:
+        """
         neighborsIndex=[]
         neighboringCells=[]
         # rowIndex is a  y-coordinate, columnIndex is a x-coordinate
