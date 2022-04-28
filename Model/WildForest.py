@@ -94,7 +94,7 @@ class WildForest:
 
     def __moveOperation(self,currentCreature,anotherCreature,rowIndex,
                         columnIndex,newRowIndex,newColumnIndex):
-        assert currentCreature is not None, "current cell can not be None!"
+        assert currentCreature is not None, "current creature can not be None!"
         moveResult = None
         if anotherCreature is not None:
             fightResult = currentCreature.fight(anotherCreature)
