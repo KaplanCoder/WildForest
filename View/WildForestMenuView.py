@@ -32,7 +32,7 @@ class WildForestMenuView:
 
 
     @classmethod
-    def getDirectionFromUser(self):
+    def getMoveFromTheUser(self):
         print("What is your move?")
         direction=input("Choose right (d), left (a), up (w) or down (s) : ")
         if (isinstance(direction,str)):
