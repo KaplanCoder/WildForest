@@ -36,6 +36,12 @@ class WildForestMenuView:
         for currentCreature in neighboringCreatures:
            print("there is a " + str(currentCreature) + " nearby! \n")
 
+    @classmethod
+    def printWelcomeMessage(cls):
+        print("Welcome to our WildForest game! \n"
+              "In this game, you are a person who is trying to find his brother in the  wild forest \n"
+              " There are dangerous monsters here. So,be careful! \n"
+              )
 
     @classmethod
     def getMoveFromTheUser(self):
