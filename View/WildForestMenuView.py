@@ -23,12 +23,8 @@ class WildForestMenuView:
         print("Sorry, You died! Game over!")
 
     @classmethod
-    def printWildForest(cls,wildForestView):
-        print(wildForestView.getStringFormatOfWildForest())
-
-    @classmethod
-    def printNeighboringCells(cls,wildForestView,rowIndex,columnIndex): # TODO: it will be checked later
-        print(wildForestView.getStringFormatOfNeighboringCells(rowIndex,columnIndex))
+    def printWildForest(cls,wildForest):
+        print(WildForestView.getStringFormatOfWildForest(wildForest))
 
 
     @classmethod
