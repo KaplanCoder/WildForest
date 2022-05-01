@@ -32,6 +32,12 @@ class WildForestMenuView:
 
 
     @classmethod
+    def printNeighboringCreatures(cls,neighboringCreatures):
+        for currentCreature in neighboringCreatures:
+           print("there is a " + str(currentCreature) + " nearby! \n")
+
+
+    @classmethod
     def getMoveFromTheUser(self):
         print("What is your move?")
         direction=input("Choose right (d), left (a), up (w) or down (s) : ")
