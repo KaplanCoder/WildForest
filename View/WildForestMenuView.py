@@ -3,6 +3,8 @@ from View.WildForestView import WildForestView
 from Model.WildForest import WildForest
 from Model.Creature import Creature
 
+# Todo: it will print fight status after move operation of the wild forest
+
 class WildForestMenuView:
 
     @classmethod
