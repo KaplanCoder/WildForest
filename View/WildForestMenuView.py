@@ -31,7 +31,7 @@ class WildForestMenuView:
 
 
     @classmethod
-    def printNeighboringCreatures(cls,wildForest,rowIndex,columnIndex): 
+    def printNeighboringCreatures(cls,wildForest,rowIndex,columnIndex):
         neighboringCells=wildForest.getNeighboringCells(rowIndex,columnIndex)
         if (len(neighboringCells) == 0):
             cls.printSafeStatus()
@@ -58,3 +58,13 @@ class WildForestMenuView:
            if (direction in enumList):
                return direction
         raise Exception("There is no such direction! Choose right (d), left (a), up (w) or down (s).")
+
+
+""" Testing
+wild=WildForest(3,3)
+c1=Creature(20,30,"Bear")
+c2=Creature(40,50,"Tiger")
+wild.addCreature(0,1,c1)
+wild.addCreature(1,2,c2)
+WildForestMenuView.printNeighboringCreatures(wild,2,0)
+"""
