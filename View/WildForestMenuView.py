@@ -1,4 +1,7 @@
 from Model.LocationMover import Movement
+from View.WildForestView import WildForestView
+from Model.WildForest import WildForest
+from Model.Creature import Creature
 
 class WildForestMenuView:
 
@@ -28,9 +31,15 @@ class WildForestMenuView:
 
 
     @classmethod
-    def printNeighboringCreatures(cls,neighboringCreatures):
-        for currentCreature in neighboringCreatures:
-           print("there is a " + str(currentCreature) + " nearby! \n")
+    def printNeighboringCreatures(cls,wildForest,rowIndex,columnIndex): 
+        neighboringCells=wildForest.getNeighboringCells(rowIndex,columnIndex)
+        if (len(neighboringCells) == 0):
+            cls.printSafeStatus()
+            return
+        for currentNeighboringCell in neighboringCells:
+            assert not currentNeighboringCell.isEmpty()," current neighboring cell can not be empty!"
+            currentCreature=currentNeighboringCell.getCreature()
+            print("there is a " + str(currentCreature) + " nearby!")
 
     @classmethod
     def printWelcomeMessage(cls):
