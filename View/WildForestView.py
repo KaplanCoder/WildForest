@@ -23,21 +23,6 @@ class WildForestView:
         return self.__wildForest
 
 
-    def getStringFormatOfNeighboringCells(self, rowIndex, columnIndex):
-        """
-        It returns neighboring cells of the current cell based on the rowIndex and columnIndex
-        :param rowIndex:
-        :param columnIndex:
-        :return: neighboring cells as string format
-        """
-        infoString=""
-        neighboringCells=self.__wildForest.getNeighboringCells(rowIndex, columnIndex)
-        for neighboringCell in neighboringCells:
-            currentCreature=neighboringCell.getCreature() # TODO: does it make sense whether wild forest view should know the creature or not?
-            infoString += "there is a " + str(currentCreature) + " nearby! \n"
-        return infoString
-
-
     def getStringFormatOfCell(self, cell):
         assert isinstance(cell, Cell), "Cell object's type is not valid. Program is terminated"
         cellString= str(cell)
