@@ -15,33 +15,27 @@ class WildForestView:
 
     __cellStringLength = 20
 
-    def __init__(self, wildForest:WildForest):
-       self.__wildForest=wildForest
-
-
-    def getWildForest(self):
-        return self.__wildForest
-
-
-    def getStringFormatOfCell(self, cell):
+    @classmethod
+    def getStringFormatOfCell(cls, cell):
         assert isinstance(cell, Cell), "Cell object's type is not valid. Program is terminated"
         cellString= str(cell)
-        remainingLength= self.__cellStringLength - len(cellString)
+        remainingLength= cls.__cellStringLength - len(cellString)
         if (remainingLength <= 0):
-            cellString = cellString[:self.__cellStringLength]
+            cellString = cellString[:cls.__cellStringLength]
         else:
-            cellString = cellString + (remainingLength * self.__cellFillingString)
-        return self.__cellDelimeter + cellString + self.__cellDelimeter
+            cellString = cellString + (remainingLength * cls.__cellFillingString)
+        return cls.__cellDelimeter + cellString + cls.__cellDelimeter
 
 
-    def  getStringFormatOfWildForest(self):
+    @classmethod
+    def  getStringFormatOfWildForest(cls,wildForest):
         stringFormat=""
-        rowSize=self.__wildForest.getRowSize()
-        columnSize=self.__wildForest.getColumnSize()
+        rowSize=wildForest.getRowSize()
+        columnSize=wildForest.getColumnSize()
         for row in range(rowSize):
             for column in range(columnSize):
-                currentCell=self.__wildForest.getCell(row,column)
-                stringFormat += self.getStringFormatOfCell(currentCell) + self.__wildForestDelimeter
+                currentCell=wildForest.getCell(row,column)
+                stringFormat += cls.getStringFormatOfCell(currentCell) + cls.__wildForestDelimeter
             stringFormat += "\n"
         return stringFormat
 
@@ -53,7 +47,5 @@ c1=Creature(20,30,"Monster")
 c2=Creature(20,30,"Person")
 wildForest.addCreature(0,1,c1)
 wildForest.addCreature(1,0,c2)
-view=WildForestView(wildForest)
-print(view.getStringFormatOfWildForest())
-print(view.getStringFormatOfNeighboringCells(1, 1))
+print(WildForestView.getStringFormatOfWildForest(wildForest))
 """
