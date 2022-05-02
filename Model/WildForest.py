@@ -119,7 +119,7 @@ class WildForest:
             self.removeCreature(rowIndex, columnIndex)
             self.addCreature(newRowIndex, newColumnIndex, currentCreature)
             moveResult = 2
-        return moveResult
+        return (anotherCreature,moveResult) # Todo: not good approach. Will be refactored later
 
 
 
@@ -135,8 +135,9 @@ class WildForest:
             raise Exception("New locations are not valid  based on the movement. Move operation is cancelled! ")
         else:
             anotherCreature=self.findCreature(newRowIndex,newColumnIndex)
-        return self.__moveOperation(currentCreature,anotherCreature,rowIndex,
+            moveResult=self.__moveOperation(currentCreature,anotherCreature,rowIndex,
                                     columnIndex,newRowIndex,newColumnIndex)
+            return moveResult
 
 
 
