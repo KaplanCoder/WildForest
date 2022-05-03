@@ -3,6 +3,8 @@ import copy
 from Model.Creature import Creature
 from Model.LocationMover import move,Movement
 from Model.Cell import Cell
+from Model.MoveInfo import FIGHTRESULT, MoveInfo
+
 
 class WildForest:
 
@@ -99,27 +101,28 @@ class WildForest:
             return True
 
 
-    def __moveOperation(self,currentCreature,anotherCreature,rowIndex,
-                        columnIndex,newRowIndex,newColumnIndex):
+    def __moveOperation(self, currentCreature, opponentCreature, rowIndex,
+                        columnIndex, newRowIndex, newColumnIndex):
         assert currentCreature is not None, "current creature can not be None!"
-        moveResult = None
-        if anotherCreature is not None:
-            fightResult = currentCreature.fight(anotherCreature)
-            if (fightResult == 1):
+        moveInfo = None
+        fightResult = None
+        if opponentCreature is not None:
+            fightResult = currentCreature.fight(opponentCreature)
+            if (fightResult == FIGHTRESULT.WON):
                 self.removeCreature(rowIndex, columnIndex)
                 self.addCreature(newRowIndex, newColumnIndex, currentCreature)
-            elif (fightResult == -1):
+            elif (fightResult == FIGHTRESULT.LOST):
                 self.removeCreature(rowIndex, columnIndex)
             else:  # fightResult  == 0 --->  replace the creatures' position
-                assert fightResult == 0, "Invalid fight result!"
+                assert fightResult == FIGHTRESULT.SCORELESS, "Invalid fight result!"
                 self.addCreature(newRowIndex, newColumnIndex, currentCreature)
-                self.addCreature(rowIndex, columnIndex, anotherCreature)
-            moveResult = fightResult
+                self.addCreature(rowIndex, columnIndex, opponentCreature)
         else:
             self.removeCreature(rowIndex, columnIndex)
             self.addCreature(newRowIndex, newColumnIndex, currentCreature)
-            moveResult = 2
-        return (anotherCreature,moveResult) # Todo: not good approach. Will be refactored later
+            fightResult = FIGHTRESULT.NOENEMY
+        moveInfo=MoveInfo(opponentCreature, fightResult)
+        return moveInfo
 
 
 
@@ -134,14 +137,14 @@ class WildForest:
         if not (self.__areIndexesValid(newRowIndex, newColumnIndex)):
             raise Exception("New locations are not valid  based on the movement. Move operation is cancelled! ")
         else:
-            anotherCreature=self.findCreature(newRowIndex,newColumnIndex)
-            moveResult=self.__moveOperation(currentCreature,anotherCreature,rowIndex,
+            opponentCreature=self.findCreature(newRowIndex,newColumnIndex)
+            moveInfo=self.__moveOperation(currentCreature,opponentCreature,rowIndex,
                                     columnIndex,newRowIndex,newColumnIndex)
-            return moveResult
+            return moveInfo
 
 
 
-"""
+
 #WildForest testing
 
 wildForest=WildForest(2,3)
@@ -161,4 +164,3 @@ wildForest.moveCreature(0,2,"a")
 wildForest.moveCreature(1,1,"w")
 n=wildForest.getNeighboringCells(1,1)
 print("Worked!")
-"""
