@@ -46,15 +46,15 @@ class Creature:
             self.setPoint(currentPoint + anotherObjectPoint)
             self.setHealth(currentHealth - anotherObjectHealth)
             anotherCreature.setHealth(0) # It means that  another creature is death.
-            return 1
+            return FIGHTRESULT.WON
         elif (currentHealth < anotherObjectHealth):
             anotherCreature.setPoint(currentPoint + anotherObjectPoint)
             anotherCreature.setHealth(anotherObjectHealth - currentHealth)
             self.setHealth(0) # It means that  current creature is death.
-            return -1
+            return FIGHTRESULT.LOST
         else: # currentHealth == anotherObjectHealth
             # two creatures neither gain points nor lose  health.
-            return 0
+            return FIGHTRESULT.SCORELESS
 
 
     def __str__(self):
