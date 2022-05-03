@@ -1,4 +1,7 @@
 
+from Model.MoveInfo import FIGHTRESULT
+
+
 class Creature:
 
     def __init__(self,health,point,name):
