@@ -92,3 +92,14 @@ class WildForestController:
         self.showFightStatus(fightInfo)
 
 
+    def start(self):
+        WildForestMenuView.printWelcomeMessage()
+        while (True):
+            self.showGameStatus()
+            userDirection= WildForestMenuView.getMoveFromTheUser()
+            self.movePlayer(userDirection)
+            self.updateStepsTaken(self.__numberOfSteps + 1)
+
+
+w=WildForestController()
+w.start()
