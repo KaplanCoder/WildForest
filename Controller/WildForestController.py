@@ -53,10 +53,11 @@ class WildForestController:
            self.setDefaultViewOfThePlayerCell("Dangerous")
            WildForestMenuView.printNeighboringCreatures(neighboringCells)
 
-    def showMenu(self):
-        WildForestMenuView.printNeighboringCreatures(
-            self.__wildForest, self.playerXcoordinate, self.playerYcoordinate)
-        WildForestMenuView.printStepsTaken(self.numberOfSteps)
+
+    def showGameStatus(self):
+        self.makeVisibleToPlayerCell()
+        self.showNeighboringCells()
+        WildForestMenuView.printStepsTaken(self.__numberOfSteps)
         WildForestMenuView.printWildForest(self.__wildForest)
         WildForestMenuView.getMoveFromTheUser()
 
