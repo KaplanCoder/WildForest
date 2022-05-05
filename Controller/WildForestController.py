@@ -59,7 +59,24 @@ class WildForestController:
         self.showNeighboringCells()
         WildForestMenuView.printStepsTaken(self.__numberOfSteps)
         WildForestMenuView.printWildForest(self.__wildForest)
-        WildForestMenuView.getMoveFromTheUser()
+
+
+
+    def showFightStatus(self,fightInfo):
+        fightResult = fightInfo.getFightResult()
+        if (fightResult == FIGHTRESULT.NOENEMY):
+            return
+        opponentCreature = fightInfo.getEnemy()
+        WildForestMenuView.printFight(opponentCreature)
+        if (fightResult == FIGHTRESULT.WON):
+            WildForestMenuView.printWinFight(opponentCreature)
+        elif (fightResult == FIGHTRESULT.LOST):
+            opponentCreature = fightInfo.getEnemy()
+            WildForestMenuView.printLoseFight(opponentCreature)
+            WildForestMenuView.printLoseGame()  ## when you lose the fight, you lose the game.
+        else:
+            assert fightResult == FIGHTRESULT.SCORELESS, "Fight result type is not valid!"
+            WildForestMenuView.printFightScorelessStatus(opponentCreature)
 
 
     def movePlayer(self,moveTypeString):
