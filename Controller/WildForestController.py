@@ -33,6 +33,8 @@ class WildForestController:
     def __createWildForestFromFile(self,wildForestName):
         pass
 
+    def getPlayerCell(self):
+        return self.__wildForest.getCell(self.__playerXcoordinate,self.__playerYcoordinate)
 
     def start(self):
         WildForestMenuView.printWelcomeMessage()
