@@ -36,8 +36,9 @@ class WildForestController:
     def getPlayerCell(self):
         return self.__wildForest.getCell(self.__playerXcoordinate,self.__playerYcoordinate)
 
-    def start(self):
-        WildForestMenuView.printWelcomeMessage()
+    def setDefaultViewOfThePlayerCell(self, newView):
+        playerCell= self.getPlayerCell()
+        playerCell.setDefaultView(newView)
 
 
 
