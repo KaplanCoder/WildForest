@@ -44,6 +44,14 @@ class WildForestController:
         playerCell = self.getPlayerCell()
         playerCell.makeVisible()
 
+    def showNeighboringCells(self):
+       neighboringCells= self.__wildForest.getNeighboringCells(self.__playerXcoordinate, self.__playerYcoordinate)
+       if (len(neighboringCells) == 0): ## it means no neighboring cells have a creature
+           self.setDefaultViewOfThePlayerCell("Safe")
+           WildForestMenuView.printSafeStatus()
+       else:
+           self.setDefaultViewOfThePlayerCell("Dangerous")
+           WildForestMenuView.printNeighboringCreatures(neighboringCells)
 
     def showMenu(self):
         WildForestMenuView.printNeighboringCreatures(
