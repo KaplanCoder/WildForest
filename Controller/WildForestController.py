@@ -40,6 +40,9 @@ class WildForestController:
         playerCell= self.getPlayerCell()
         playerCell.setDefaultView(newView)
 
+    def makeVisibleToPlayerCell(self):
+        playerCell = self.getPlayerCell()
+        playerCell.makeVisible()
 
 
     def showMenu(self):
