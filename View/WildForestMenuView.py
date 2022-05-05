@@ -36,11 +36,7 @@ class WildForestMenuView:
 
 
     @classmethod
-    def printNeighboringCreatures(cls,wildForest,rowIndex,columnIndex):
-        neighboringCells=wildForest.getNeighboringCells(rowIndex,columnIndex)
-        if (len(neighboringCells) == 0):
-            cls.printSafeStatus()
-            return
+    def printNeighboringCreatures(cls,neighboringCells):
         for currentNeighboringCell in neighboringCells:
             assert not currentNeighboringCell.isEmpty()," current neighboring cell can not be empty!"
             currentCreature=currentNeighboringCell.getCreature()
