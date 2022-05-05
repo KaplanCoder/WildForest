@@ -1,5 +1,5 @@
 
-from Model.MoveInfo import FIGHTRESULT
+from Model.FightInfo import FIGHTRESULT
 
 
 class Creature:
