@@ -81,7 +81,14 @@ class WildForestController:
 
 
     def movePlayer(self,moveTypeString):
-        moveResult=self.__wildForest.moveCreature(
-            self.__playerXcoordinate,self.__playerYcoordinate,moveTypeString)
+        try:
+            fightInfo=self.__wildForest.moveCreature(
+                self.__playerXcoordinate,self.__playerYcoordinate,moveTypeString)
+        except Exception: # must be hit wall
+            WildForestMenuView.printHitWall()
+            return
+        newCoordinates=fightInfo.getNewCoordinates()
+        self.updatePlayerCoordinates(newCoordinates)
+        self.showFightStatus(fightInfo)
 
 
