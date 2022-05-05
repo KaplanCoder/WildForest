@@ -21,12 +21,14 @@ class WildForestMenuView:
         print(f"Number of steps taken so far is {steps}")
 
     @classmethod
-    def printWinStatus(cls, name):
+    def printWinGame(cls, name):
         print(f"Yay! You found the {name}!")
 
     @classmethod
-    def printLoseStatus(cls):
+    def printLoseGame(cls):
         print("Sorry, You died! Game over!")
+
+
 
     @classmethod
     def printWildForest(cls,wildForest):
@@ -50,6 +52,24 @@ class WildForestMenuView:
               "In this game, you are a person who is trying to find his brother in the  wild forest \n"
               " There are dangerous monsters here. So,be careful! \n"
               )
+
+    @classmethod
+    def printFight(cls,opponentCreature,):
+        print(f"Opps! You have encountered the {opponentCreature.getName()}")
+        print(f"You are fighting it right now...")
+
+    @classmethod
+    def printWinFight(cls,opponentCreature):
+        print(f" Congratulations!! You have won the fight against {opponentCreature.getName()}! ")
+
+    @classmethod
+    def printLoseFight(cls,opponentCreature):
+        print(f"Sorry! Unfortunately you have lost the fight against {opponentCreature.getName()}!")
+
+    @classmethod
+    def printFightScorelessStatus(cls,opponentCreature):
+        print(f"Nobody won this fight! You and your opponent"
+              f"that is {opponentCreature.getName()} whose places"  f"have been swapped!")
 
     @classmethod
     def getMoveFromTheUser(self):
