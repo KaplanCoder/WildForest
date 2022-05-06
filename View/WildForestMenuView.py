@@ -46,7 +46,7 @@ class WildForestMenuView:
     def printWelcomeMessage(cls):
         print("Welcome to our WildForest game! \n"
               "In this game, you are a person who is trying to find his brother in the  wild forest \n"
-              " There are dangerous monsters here. So,be careful! \n"
+              "There are dangerous monsters here. So,be careful! \n"
               )
 
     @classmethod
@@ -56,7 +56,7 @@ class WildForestMenuView:
 
     @classmethod
     def printWinFight(cls,opponentCreature):
-        print(f" Congratulations!! You have won the fight against {opponentCreature.getName()}! ")
+        print(f"Congratulations!! You have won the fight against {opponentCreature.getName()}! ")
 
     @classmethod
     def printLoseFight(cls,opponentCreature):
