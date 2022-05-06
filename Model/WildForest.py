@@ -142,7 +142,7 @@ class WildForest:
 
 
 #WildForest testing
-
+"""
 wildForest=WildForest(2,3)
 c1=Creature(50,20,"d")
 c2=Creature(20,10,"d")
@@ -160,3 +160,5 @@ wildForest.moveCreature(0,2,"a")
 wildForest.moveCreature(1,1,"w")
 n=wildForest.getNeighboringCells(1,1)
 print("Worked!")
+
+"""
