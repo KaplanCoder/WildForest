@@ -24,8 +24,8 @@ class WildForestController:
 
 
     def updatePlayerCoordinates(self, newCoordinates):
-        self.setPlayerXcoordinate = newCoordinates[0]  ## Todo: is it a good approach? Will be checked later
-        self.setPlayerYcoordinate = newCoordinates[1]
+        self.__playerXcoordinate = newCoordinates[0]  ## Todo: is it a good approach? Will be checked later
+        self.__playerYcoordinate = newCoordinates[1]
 
 
     def updateStepsTaken(self, newNumberOfSteps):
