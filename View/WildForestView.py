@@ -7,13 +7,9 @@ class WildForestView:
 
      # TODO: attributes of a class can be changed later. is it a  good approach?
 
-    __wildForestDelimeter = "" # not used for now
+    __cellDelimeter = "-"
 
-    __cellDelimeter = " "
-
-    __cellFillingString = " "
-
-    __cellStringLength = 20
+    __cellStringLength = 10
 
     @classmethod
     def getStringFormatOfCell(cls, cell):
