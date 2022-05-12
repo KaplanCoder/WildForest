@@ -5,8 +5,6 @@ from Model.WildForest import WildForest
 
 class WildForestView:
 
-     # TODO: attributes of a class can be changed later. is it a  good approach?
-
     __cellDelimeter = "-"
 
     __cellStringLength = 10
