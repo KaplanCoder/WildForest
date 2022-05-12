@@ -19,8 +19,8 @@ class WildForestView:
         if (remainingLength <= 0):
             cellString = cellString[:cls.__cellStringLength]
         else:
-            cellString = cellString + (remainingLength * cls.__cellFillingString)
-        return cls.__cellDelimeter + cellString + cls.__cellDelimeter
+            cellString = cellString + (remainingLength * cls.__cellDelimeter)
+        return cellString
 
 
     @classmethod
