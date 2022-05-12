@@ -16,14 +16,14 @@ class WildForestView:
     __cellStringLength = 10
 
     @classmethod
-    def getStringFormatOfCell(cls, cell):
+    def getStringFormatOfCell(cls, cell , isDelimeterAllowed= True):
         assert isinstance(cell, Cell), "Cell object's type is not valid. Program is terminated"
         cellString= str(cell)
         remainingLength= cls.__cellStringLength - len(cellString)
         if (remainingLength <= 0):
             cellString = cellString[:cls.__cellStringLength]
-        else:
-            cellString = cellString + (remainingLength * cls.__cellDelimeter)
+        elif (isDelimeterAllowed):
+            cellString = cellString + (remainingLength * cls.__rowDelimeter)
         return cellString
 
 
