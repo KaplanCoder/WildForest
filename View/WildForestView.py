@@ -31,8 +31,9 @@ class WildForestView:
         for row in range(rowSize):
             for column in range(columnSize):
                 currentCell=wildForest.getCell(row,column)
-                stringFormat += cls.getStringFormatOfCell(currentCell) + cls.__wildForestDelimeter
+                stringFormat += cls.getStringFormatOfCell(currentCell) + cls.__cellDelimeter
             stringFormat += "\n"
+
         return stringFormat
 
 
