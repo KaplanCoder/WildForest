@@ -28,6 +28,25 @@ class WildForestView:
 
 
     @classmethod
+    def __getColumnDelimeterLine(cls,columnSize):
+        columnDelimeterLineSize= ((columnSize - 1 ) * cls.__rowDelimeterLength) \
+                                 + (columnSize *  cls.__cellStringLength)
+        columnDelimeterLine=" " * columnDelimeterLineSize
+        delimeterLineList=list(columnDelimeterLine)
+        delimeterLineLength=len(delimeterLineList)
+        currentIndex= 0
+        while (currentIndex < delimeterLineLength):
+            delimeterLineList[currentIndex] = cls.__columnDelimeter
+            currentIndex += cls.__rowDelimeterLength + cls.__cellStringLength
+        columnDelimeterLine = "".join(delimeterLineList)
+        columnDelimeterLine += "\n"
+        columnDelimeterLine = columnDelimeterLine * cls.__columnDelimeterLength
+        return columnDelimeterLine
+
+
+
+
+    @classmethod
     def  getStringFormatOfWildForest(cls,wildForest):
         stringFormat=""
         rowSize=wildForest.getRowSize()
