@@ -5,7 +5,13 @@ from Model.WildForest import WildForest
 
 class WildForestView:
 
-    __cellDelimeter = "-"
+    __rowDelimeter = "-"
+
+    __columnDelimeter = "|"
+
+    __rowDelimeterLength = 10
+
+    __columnDelimeterLength = 5
 
     __cellStringLength = 10
 
