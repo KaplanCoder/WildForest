@@ -51,11 +51,19 @@ class WildForestView:
         stringFormat=""
         rowSize=wildForest.getRowSize()
         columnSize=wildForest.getColumnSize()
-        for row in range(rowSize):
-            for column in range(columnSize):
-                currentCell=wildForest.getCell(row,column)
-                stringFormat += cls.getStringFormatOfCell(currentCell) + cls.__cellDelimeter
+        columnDelimeterLine = cls.__getColumnDelimeterLine(columnSize)
+        for rowIndex in range(rowSize):
+            cellDelimeter=cls.__rowDelimeter * cls.__rowDelimeterLength
+            isDelimeterAllowed = True
+            for columnIndex in range(columnSize):
+                currentCell=wildForest.getCell(rowIndex,columnIndex)
+                if (columnIndex == columnSize - 1): # if current cell is a last cell, delimeter wil not be added
+                    isDelimeterAllowed=False
+                    cellDelimeter=""
+                stringFormat += cls.getStringFormatOfCell(currentCell,isDelimeterAllowed)
+                stringFormat += cellDelimeter
             stringFormat += "\n"
+            stringFormat = stringFormat + columnDelimeterLine if (rowIndex != rowSize - 1) else stringFormat
 
         return stringFormat
 
