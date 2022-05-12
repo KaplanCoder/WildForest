@@ -5,51 +5,42 @@ from Model.WildForest import WildForest
 
 class WildForestView:
 
-     # TODO: attributes of a class can be changed later. is it a  good approach?
+    __cellDelimeter = "-"
 
-    __wildForestDelimeter = "" # not used for now
+    __cellStringLength = 10
 
-    __cellDelimeter = " "
-
-    __cellFillingString = " "
-
-    __cellStringLength = 20
-
-    def __init__(self, wildForest:WildForest):
-       self.__wildForest=wildForest
-
-    def getWildForest(self):
-        return self.__wildForest
-
-    def getStringFormatOfCell(self, cell):
+    @classmethod
+    def getStringFormatOfCell(cls, cell):
         assert isinstance(cell, Cell), "Cell object's type is not valid. Program is terminated"
         cellString= str(cell)
-        remainingLength= self.__cellStringLength - len(cellString)
+        remainingLength= cls.__cellStringLength - len(cellString)
         if (remainingLength <= 0):
-            cellString = cellString[:self.__cellStringLength]
+            cellString = cellString[:cls.__cellStringLength]
         else:
-            cellString = cellString + (remainingLength * self.__cellFillingString)
-        return self.__cellDelimeter + cellString + self.__cellDelimeter
+            cellString = cellString + (remainingLength * cls.__cellDelimeter)
+        return cellString
 
 
-    def  getStringFormatOfWildForest(self):
-        wildForest=self.getWildForest()
+    @classmethod
+    def  getStringFormatOfWildForest(cls,wildForest):
         stringFormat=""
         rowSize=wildForest.getRowSize()
         columnSize=wildForest.getColumnSize()
-        wildForestList=wildForest.getWildForestList()
         for row in range(rowSize):
             for column in range(columnSize):
-                currentCell=wildForestList[row][column]
-                stringFormat += self.getStringFormatOfCell(currentCell) + self.__wildForestDelimeter
+                currentCell=wildForest.getCell(row,column)
+                stringFormat += cls.getStringFormatOfCell(currentCell) + cls.__cellDelimeter
             stringFormat += "\n"
+
         return stringFormat
 
 
+
+"""testing
 wildForest=WildForest(5, 5)
 c1=Creature(20,30,"Monster")
 c2=Creature(20,30,"Person")
-wildForest.addCreature(3,1,c1)
-wildForest.addCreature(4,2,c2)
-view=WildForestView(wildForest)
-print(view.getStringFormatOfWildForest())
+wildForest.addCreature(0,1,c1)
+wildForest.addCreature(1,0,c2)
+print(WildForestView.getStringFormatOfWildForest(wildForest))
+"""

@@ -1,6 +1,10 @@
+import copy
+
 from Model.Creature import Creature
-from Model.LocationMover import move
+from Model.LocationMover import move,Movement
 from Model.Cell import Cell
+from Model.FightInfo import FIGHTRESULT, FightInfo
+
 
 class WildForest:
 
@@ -21,7 +25,43 @@ class WildForest:
     def getWildForestList(self):
         return self.__wildForestList
 
-    def areIndexesValid(self,rowIndex, columnIndex):
+
+    def getNeighboringCells(self,rowIndex,columnIndex):
+        """
+        It finds the non-empty neighboring cells of the current cell based on rowIndex and columndIndex
+
+        :param rowIndex:
+        :param columnIndex:
+        :return:
+        """
+        neighborsIndex=[]
+        neighboringCells=[]
+        # rowIndex is a  y-coordinate, columnIndex is a x-coordinate
+        # we check every movement direction of the current indexes
+        neighborsIndex.append(move(columnIndex,rowIndex,Movement.Right))
+        neighborsIndex.append(move(columnIndex, rowIndex, Movement.Left))
+        neighborsIndex.append(move(columnIndex, rowIndex, Movement.Up))
+        neighborsIndex.append(move(columnIndex, rowIndex, Movement.Down))
+        copyNeighborsIndex=copy.deepcopy(neighborsIndex)
+        for neighbor in copyNeighborsIndex:
+            newRowIndex=neighbor[1]
+            newColumnIndex=neighbor[0]
+            if not (self.__areIndexesValid(newRowIndex,newColumnIndex)):
+                neighborsIndex.remove(neighbor)
+            else:
+                currentCell=self.__wildForestList[newRowIndex][newColumnIndex]
+                if not (currentCell.isEmpty()):
+                    neighboringCells.append(currentCell)
+        return neighboringCells
+
+
+    def getCell(self,rowIndex,columnIndex):
+        if (self.__areIndexesValid(rowIndex, columnIndex)):
+            return self.__wildForestList[rowIndex][columnIndex]
+        return None
+
+
+    def __areIndexesValid(self, rowIndex, columnIndex):
         if (rowIndex >= self.getRowSize() or (rowIndex < 0)):
             return False
         if (columnIndex >= self.getColumnSize() or (columnIndex < 0)):
@@ -29,9 +69,10 @@ class WildForest:
         return True
 
     def findCreature(self, rowIndex,columnIndex):
-        if (self.areIndexesValid(rowIndex, columnIndex)):
-            return self.__wildForestList[rowIndex][columnIndex]
-        return None
+        currentCell=self.getCell(rowIndex,columnIndex)
+        if currentCell is not None:
+            return currentCell.getCreature()
+        return currentCell
 
     def makeVisibleToCell(self,rowIndex,columnIndex):
         currentCell = self.__wildForestList[rowIndex][columnIndex]
@@ -44,14 +85,15 @@ class WildForest:
 
     def addCreature(self,rowIndex, columnIndex,creature):
         assert isinstance(creature, Creature), "Creature object's type is not valid. Program is terminated!"
-        if not (self.areIndexesValid(rowIndex,columnIndex)):
+        if not (self.__areIndexesValid(rowIndex, columnIndex)):
             return False
         currentCell= self.__wildForestList[rowIndex][columnIndex]
         currentCell.setCreature(creature) # TODO: warning occured. will be checked latter
         return True
 
+
     def removeCreature(self, rowIndex, columnIndex):
-        if not  (self.areIndexesValid(rowIndex, columnIndex)):
+        if not  (self.__areIndexesValid(rowIndex, columnIndex)):
             return False
         else:
             currentCell = self.__wildForestList[rowIndex][columnIndex]
@@ -59,56 +101,54 @@ class WildForest:
             return True
 
 
-    def __moveOperation(self,currentCreature,anotherCreature,rowIndex,
-                        columnIndex,newRowIndex,newColumnIndex):
-        assert currentCreature is not None, "current cell can not be None!"
-        moveResult = None
-        if anotherCreature is not None:
-            fightResult = currentCreature.fight(anotherCreature)
-            if (fightResult == 1):
-                self.removeCreature(rowIndex, columnIndex)
+    def __moveOperation(self, currentRowIndex,
+                        currentColumnIndex, newRowIndex, newColumnIndex):
+        currentCreature=self.findCreature(currentRowIndex,currentColumnIndex)
+        assert currentCreature is not None,"Current creature can not be None!"
+        fightInfo = None
+        fightResult = None
+        opponentCreature=self.findCreature(newRowIndex,newColumnIndex)
+        if opponentCreature is not None:
+            fightResult = currentCreature.fight(opponentCreature)
+            if (fightResult == FIGHTRESULT.WON):
+                self.removeCreature(currentRowIndex, currentColumnIndex)
                 self.addCreature(newRowIndex, newColumnIndex, currentCreature)
-            elif (fightResult == -1):
-                self.removeCreature(rowIndex, columnIndex)
+            elif (fightResult == FIGHTRESULT.LOST):
+                self.removeCreature(currentRowIndex, currentColumnIndex)
             else:  # fightResult  == 0 --->  replace the creatures' position
-                assert fightResult == 0, "Invalid fight result!"
+                assert fightResult == FIGHTRESULT.SCORELESS, "Invalid fight result!"
                 self.addCreature(newRowIndex, newColumnIndex, currentCreature)
-                self.addCreature(rowIndex, columnIndex, anotherCreature)
-            moveResult = fightResult
+                self.addCreature(currentRowIndex, currentColumnIndex, opponentCreature)
         else:
-            self.removeCreature(rowIndex, columnIndex)
+            self.removeCreature(currentRowIndex, currentColumnIndex)
             self.addCreature(newRowIndex, newColumnIndex, currentCreature)
-            moveResult = 1
-        return moveResult
+            fightResult = FIGHTRESULT.NOENEMY
+        newCoordinates=(newRowIndex,newColumnIndex)
+        fightInfo=FightInfo(opponentCreature, fightResult,newCoordinates)
+        return fightInfo
 
 
 
-    def moveCreature(self,rowIndex,columnIndex,moveTypeString):
-        currentCreature=self.findCreature(rowIndex,columnIndex)
-        if (currentCreature is None):
-            raise Exception("Creature is not found! Move operation cancelled!")
+    def moveCreature(self, rowIndex, columnIndex, moveTypeString):
         # rowIndex is a  y-coordinate, columnIndex is a x-coordinate
         newLocations= move(columnIndex, rowIndex, moveTypeString)
         newRowIndex=newLocations[1]
         newColumnIndex=newLocations[0]
-        if not (self.areIndexesValid(newRowIndex,newColumnIndex)):
+        if not (self.__areIndexesValid(newRowIndex, newColumnIndex)):
             raise Exception("New locations are not valid  based on the movement. Move operation is cancelled! ")
         else:
-            anotherCreature=self.findCreature(newRowIndex,newColumnIndex)
-        return self.__moveOperation(currentCreature,anotherCreature,rowIndex,
-                                    columnIndex,newRowIndex,newColumnIndex)
+            fightInfo=self.__moveOperation(rowIndex, columnIndex, newRowIndex, newColumnIndex)
+            return fightInfo
 
 
-
-
-"""WildForest testing
-
+#WildForest testing
+"""
 wildForest=WildForest(2,3)
-c1=Creature(50,20)
-c2=Creature(20,10)
-c3=Creature(30,10)
-c4=Creature(60,40)
-c5=Creature(50,30)
+c1=Creature(50,20,"d")
+c2=Creature(20,10,"d")
+c3=Creature(30,10,"d")
+c4=Creature(60,40,"d")
+c5=Creature(50,30,"d")
 wildForest.addCreature(0,0,c1)
 wildForest.addCreature(0,1,c2)
 wildForest.addCreature(0,2,c3)
@@ -118,9 +158,7 @@ wildForest.moveCreature(0,0,"s")
 wildForest.moveCreature(0,1,"a")
 wildForest.moveCreature(0,2,"a")
 wildForest.moveCreature(1,1,"w")
-wildForest.moveCreature(0,0,"d")
-wildForest.moveCreature(0,0,"s")
-wildForest.moveCreature(-1,0,"s")
+n=wildForest.getNeighboringCells(1,1)
 print("Worked!")
 
 """
