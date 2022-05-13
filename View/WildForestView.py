@@ -62,6 +62,11 @@ class WildForestView:
 
     @classmethod
     def  getStringFormatOfWildForest(cls,wildForest):
+        """
+        It returns the wild forest as a string format
+        :param wildForest:
+        :return:
+        """
         stringFormat=""
         rowSize=wildForest.getRowSize()
         columnSize=wildForest.getColumnSize()
