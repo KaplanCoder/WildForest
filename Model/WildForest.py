@@ -153,7 +153,7 @@ class WildForest:
 
     def moveCreature(self, rowIndex, columnIndex, moveTypeString):
         """
-        It moves the creature from one location to another in the wild forest based on the move type
+        It moves the creature from one location to another in the wild forest based on the move type \n
         :param rowIndex:
         :param columnIndex:
         :param moveTypeString:
