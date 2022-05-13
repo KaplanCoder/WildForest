@@ -5,43 +5,57 @@ from Model.WildForest import WildForest
 
 class WildForestView:
 
-    __rowDelimeter = "-"
+    __rowDelimiter = "-"  # delimiter between the cells in a row
 
-    __columnDelimeter = "|"
+    __columnDelimiter = "|" # delimiter between the cells in a column
 
-    __rowDelimeterLength = 10
+    __rowDelimiterLength = 10
 
-    __columnDelimeterLength = 5
+    __columnDelimiterLineSize = 5 # not column delimiter length, but number of lines using the column delimiter !!!
 
-    __cellStringLength = 10
+    __cellDefaultLength = 10
 
     @classmethod
-    def getStringFormatOfCell(cls, cell , isDelimeterAllowed= True):
+    def getStringFormatOfCell(cls, cell, isRowDelimiterAllowed= True):
+        """
+         It returns the cell as a string format. \n
+         If cell string length is smaller than the default length and row delimiter is allowed \n
+        then row delimiter is added to  end of the string to reach the default length\n
+        :param cell: Cell object
+        :param isRowDelimiterAllowed:
+        :return:
+        """
         assert isinstance(cell, Cell), "Cell object's type is not valid. Program is terminated"
         cellString= str(cell)
-        remainingLength= cls.__cellStringLength - len(cellString)
+        remainingLength= cls.__cellDefaultLength - len(cellString)
         if (remainingLength <= 0):
-            cellString = cellString[:cls.__cellStringLength]
-        elif (isDelimeterAllowed):
-            cellString = cellString + (remainingLength * cls.__rowDelimeter)
+            cellString = cellString[:cls.__cellDefaultLength]
+        elif (isRowDelimiterAllowed):
+            cellString = cellString + (remainingLength * cls.__rowDelimiter)
         return cellString
 
 
     @classmethod
-    def __getColumnDelimeterLine(cls,columnSize):
-        columnDelimeterLineSize= ((columnSize - 1 ) * cls.__rowDelimeterLength) \
-                                 + (columnSize *  cls.__cellStringLength)
-        columnDelimeterLine=" " * columnDelimeterLineSize
-        delimeterLineList=list(columnDelimeterLine)
+    def __getColumnDelimiterLine(cls,columnSize):
+        """
+        It creates the delimiter line to seperate the cells based on the column.
+        :param columnSize: number of cells(columns) per row
+        :return:
+        """
+        columnDelimiterLineSize= ((columnSize - 1 ) * cls.__rowDelimiterLength) \
+                                 + (columnSize * cls.__cellDefaultLength)
+        columnDelimiterLine=" " * columnDelimiterLineSize # empty delimiter line
+        # to parse the string, it is converted to the list
+        delimeterLineList=list(columnDelimiterLine)
         delimeterLineLength=len(delimeterLineList)
         currentIndex= 0
         while (currentIndex < delimeterLineLength):
-            delimeterLineList[currentIndex] = cls.__columnDelimeter
-            currentIndex += cls.__rowDelimeterLength + cls.__cellStringLength
-        columnDelimeterLine = "".join(delimeterLineList)
-        columnDelimeterLine += "\n"
-        columnDelimeterLine = columnDelimeterLine * cls.__columnDelimeterLength
-        return columnDelimeterLine
+            delimeterLineList[currentIndex] = cls.__columnDelimiter
+            currentIndex += cls.__rowDelimiterLength + cls.__cellDefaultLength
+        columnDelimiterLine = "".join(delimeterLineList) # convert the list back to string
+        columnDelimiterLine += "\n"
+        columnDelimiterLine = columnDelimiterLine * cls.__columnDelimiterLineSize
+        return columnDelimiterLine
 
 
 
@@ -51,19 +65,20 @@ class WildForestView:
         stringFormat=""
         rowSize=wildForest.getRowSize()
         columnSize=wildForest.getColumnSize()
-        columnDelimeterLine = cls.__getColumnDelimeterLine(columnSize)
+        columnDelimiterLine = cls.__getColumnDelimiterLine(columnSize)
         for rowIndex in range(rowSize):
-            cellDelimeter=cls.__rowDelimeter * cls.__rowDelimeterLength
-            isDelimeterAllowed = True
+            cellDelimiter=cls.__rowDelimiter * cls.__rowDelimiterLength
+            isRowDelimiterAllowed = True
             for columnIndex in range(columnSize):
                 currentCell=wildForest.getCell(rowIndex,columnIndex)
-                if (columnIndex == columnSize - 1): # if current cell is a last cell, delimeter wil not be added
-                    isDelimeterAllowed=False
-                    cellDelimeter=""
-                stringFormat += cls.getStringFormatOfCell(currentCell,isDelimeterAllowed)
-                stringFormat += cellDelimeter
+                if (columnIndex == columnSize - 1): # if current cell is a last cell, delimiter wil not be added
+                    isRowDelimiterAllowed=False
+                    cellDelimiter=""
+                stringFormat += cls.getStringFormatOfCell(currentCell,isRowDelimiterAllowed)
+                stringFormat += cellDelimiter
             stringFormat += "\n"
-            stringFormat = stringFormat + columnDelimeterLine if (rowIndex != rowSize - 1) else stringFormat
+            # if current line is  a last line, column delimiter line will not be added
+            stringFormat = stringFormat + columnDelimiterLine if (rowIndex != rowSize - 1) else stringFormat
 
         return stringFormat
 
