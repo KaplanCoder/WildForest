@@ -2,6 +2,9 @@ from enum import Enum
 
 
 class Movement(str,Enum):
+    """
+    Movements are assigned to the chars.
+    """
     Left = "a"
     Right = "d"
     Down = "s"
@@ -29,4 +32,4 @@ def move(xCoordinate, yCoordinate, moveTypeString):
     elif (moveTypeString == Movement.Up):
         return (xCoordinate, yCoordinate - 1)
     else:
-        raise Exception("Move type is not valid!")
+        raise Exception("Move type is not valid!")  # Todo: custom exception can be used

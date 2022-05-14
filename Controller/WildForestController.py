@@ -16,7 +16,7 @@ class WildForestController:
 
 
     def dummyData(self):
-        self.__wildForest = WildForest(3, 3)  ## model
+        self.__wildForest = WildForest(3,3)  ## model
         self.__playerCreature=Creature(30,0,"You")
         m1 = Creature(10, 10, "Bear")
         m2 = Creature(5, 10, "Tiger")
@@ -51,11 +51,15 @@ class WildForestController:
         playerCell.makeVisible()
 
     def showNeighboringCells(self):
-       neighboringCells= self.__wildForest.getNeighboringCells(self.__playerXcoordinate, self.__playerYcoordinate)
-       if (len(neighboringCells) == 0): ## it means no neighboring cells have a creature
+        """
+        It prints the non-empty neighboring cells of the cell where the player is located
+        :return:
+        """
+        neighboringCells= self.__wildForest.getNeighboringCells(self.__playerXcoordinate, self.__playerYcoordinate)
+        if (len(neighboringCells) == 0): ## it means no neighboring cells have a creature
            self.setDefaultViewOfThePlayerCell("Safe")
            WildForestMenuView.printSafeStatus()
-       else:
+        else:
            self.setDefaultViewOfThePlayerCell("Dangerous")
            WildForestMenuView.printNeighboringCreatures(neighboringCells)
 
@@ -71,7 +75,7 @@ class WildForestController:
     def showFightStatus(self,fightInfo):
         fightResult = fightInfo.getFightResult()
         if (fightResult == FIGHTRESULT.NOENEMY):
-            return
+            return # no fight to show
         opponentCreature = fightInfo.getEnemy()
         WildForestMenuView.printFight(opponentCreature)
         if (fightResult == FIGHTRESULT.WON):
@@ -80,6 +84,7 @@ class WildForestController:
             opponentCreature = fightInfo.getEnemy()
             WildForestMenuView.printLoseFight(opponentCreature)
             WildForestMenuView.printLoseGame()  ## when you lose the fight, you lose the game.
+            #  Todo throw exception or return some warning that game is over
         else:
             assert fightResult == FIGHTRESULT.SCORELESS, "Fight result type is not valid!"
             WildForestMenuView.printFightScorelessStatus(opponentCreature)
@@ -89,7 +94,7 @@ class WildForestController:
         try:
             fightInfo=self.__wildForest.moveCreature(
                 self.__playerXcoordinate,self.__playerYcoordinate,moveTypeString)
-        except Exception: # must be hit wall
+        except Exception: # must be hit wall Todo: must be custom exception
             WildForestMenuView.printHitWall()
             return
         newCoordinates=fightInfo.getNewCoordinates()
@@ -104,6 +109,7 @@ class WildForestController:
             userDirection= WildForestMenuView.getMoveFromTheUser()
             self.movePlayer(userDirection)
             self.updateStepsTaken(self.__numberOfSteps + 1)
+
 
 
 w=WildForestController()

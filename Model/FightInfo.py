@@ -3,11 +3,12 @@
 from enum import Enum
 
 class FIGHTRESULT(Enum):
-    # int values of enums  are not used for now
+    # int values are assigned for creating the enums. they don't have a specific mean.
+    # Todo: is it a good approach?
     WON = 1
     LOST = -1
     SCORELESS = 0
-    NOENEMY = 2  # no enemies to fight
+    NOENEMY = 2  #  there is no enemy to fight
 
 
 class FightInfo:

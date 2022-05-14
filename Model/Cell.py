@@ -2,7 +2,7 @@ from Model.Creature import Creature
 
 class Cell:
 
-    __defaultView="Empty"
+    __defaultView="Empty" # if there is no creature in the cell, the default view will be shown
 
     def __init__(self, creature = None):
         self.__creature=creature
@@ -31,11 +31,3 @@ class Cell:
     def __str__(self):
         stringFormat=self.__defaultView if (self.__creature is None) else self.__creature.getName()
         return stringFormat if self.__isViewAllowed else "Unknown"
-"""
-Testing
-c1=Cell(Creature(40,50,"Example"))
-print(c1.isEmpty())
-c1.setCreature(None)
-print(c1.isEmpty())
-
-"""

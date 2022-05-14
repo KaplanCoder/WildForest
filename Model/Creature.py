@@ -1,4 +1,5 @@
 
+
 from Model.FightInfo import FIGHTRESULT
 
 
@@ -34,11 +35,15 @@ class Creature:
     def getHealth(self):
         return self.__health
 
+
     def fight(self, anotherCreature):
         """
-        Todo: fight will be explained
-        :param anotherCreature:
-        :return:
+        Creature fights the another creature \n
+        if it wins the fight ---> it earns the enemy's point but its health decreases \n
+        if it loses the fight --> it's point is earned by the enemy and it dies.
+        if both creatures have the same health --> noone gains the points and none dies
+        :param anotherCreature:  the creature that the current creature is fighting
+        :return: fight result
         """
         assert isinstance(anotherCreature, Creature), "Creature object's type is not valid. Program is terminated!"
         anotherObjectHealth=anotherCreature.getHealth()
