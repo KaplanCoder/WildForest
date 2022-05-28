@@ -13,7 +13,7 @@ class WildForestView:
 
     __columnDelimiterLineSize = 5 # not column delimiter length, but number of lines using the column delimiter !!!
 
-    __cellDefaultLength = 10
+    __cellDefaultLength = 12
 
     @classmethod
     def getStringFormatOfCell(cls, cell, isRowDelimiterAllowed= True):
