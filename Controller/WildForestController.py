@@ -111,7 +111,7 @@ class WildForestController:
         elif (fightResult == FIGHTRESULT.LOST):
             opponentCreature = fightInfo.getEnemy()
             WildForestMenuView.printLoseFight(opponentCreature)
-            WildForestMenuView.printLoseGame()  ## when you lose the fight, you lose the game.
+            self.finishTheGame(self.__GAMERESULT.LOSE)
             #  Todo throw exception or return some warning that game is over
         else:
             assert fightResult == FIGHTRESULT.SCORELESS, "Fight result type is not valid!"
@@ -126,6 +126,9 @@ class WildForestController:
         except Exception: # must be hit wall Todo: must be custom exception
             WildForestMenuView.printHitWall()
             return
+        currentEnemy=fightInfo.getEnemy()
+        if (currentEnemy is self.__creatureToBeFound):
+            self.finishTheGame(self.__GAMERESULT.WIN)
         newCoordinates=fightInfo.getNewCoordinates()
         self.updatePlayerCoordinates(newCoordinates)
         self.showFightStatus(fightInfo)
