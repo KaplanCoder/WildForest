@@ -23,6 +23,11 @@ class WildForestMenuView:
     @classmethod
     def printWinGame(cls, name):
         print(f"Yay! You found the {name}!")
+        print(f"Congratulations!!! You have won the game!")
+
+    @classmethod
+    def printScore(cls,score):
+        print(f"Your score is = {score}")
 
     @classmethod
     def printLoseGame(cls):
