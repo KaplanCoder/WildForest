@@ -63,7 +63,8 @@ class WildForestController:
 
     def showNeighboringCells(self):
         """
-        It prints the non-empty neighboring cells of the cell where the player is located
+        It prints the non-empty neighboring cells of the cell where the player is located.
+        However,it doesn't print the neighboring cell containing the creature to be found. \n
         :return:
         """
         neighboringCells= self.__wildForest.getNeighboringCells(self.__playerXcoordinate, self.__playerYcoordinate)
