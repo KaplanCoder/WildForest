@@ -33,6 +33,12 @@ class WildForestMenuView:
     def printLoseGame(cls):
         print("Sorry, You died! Game over!")
 
+    @classmethod
+    def printCreatureStatus(cls,creature):
+        print(f"{creature.getName()}'s current health = {creature.getHealth()}")
+        print(f"{creature.getName()}'s current point = {creature.getPoint()}")
+
+
 
 
     @classmethod
