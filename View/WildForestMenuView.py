@@ -47,11 +47,18 @@ class WildForestMenuView:
 
 
     @classmethod
-    def printNeighboringCreatures(cls,neighboringCells):
-        for currentNeighboringCell in neighboringCells:
-            assert not currentNeighboringCell.isEmpty()," current neighboring cell can not be empty!"
-            currentCreature=currentNeighboringCell.getCreature()
-            print("there is a " + str(currentCreature) + " nearby!")
+    def printCreaturesVoice(cls, cells, hiddenCreature):
+        """
+        :param cells:
+        :param hiddenCreature: hidden creature's voice is not printed
+        :return:
+        """
+        for currentCell in cells:
+            assert not currentCell.isEmpty()," current cell can not be empty!"
+            currentCreature=currentCell.getCreature()
+            if (currentCreature is hiddenCreature):
+                continue
+            print(str(currentCreature) + " voice heard nearby!")
 
     @classmethod
     def printWelcomeMessage(cls):
