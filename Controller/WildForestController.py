@@ -9,6 +9,9 @@ from Model.FightInfo import FIGHTRESULT
 
 class WildForestController:
 
+    class __GAMERESULT(Enum):
+        WIN=1,
+        LOSE=0
 
     def __init__(self):
         self.dummyData()
