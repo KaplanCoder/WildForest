@@ -86,8 +86,8 @@ class WildForestMenuView:
 
     @classmethod
     def printFightScorelessStatus(cls,opponentCreature):
-        print(f"Nobody won this fight! You and your opponent"
-              f"that is {opponentCreature.getName()} whose places"  f"have been swapped!")
+        print(f"Nobody won this fight! You and your opponent "
+              f"that is {opponentCreature.getName()} whose places "  f"have been swapped!")
 
     @classmethod
     def getMoveFromTheUser(self):

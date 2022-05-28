@@ -15,16 +15,19 @@ class WildForestController:
 
 
     def dummyData(self):
-        self.__wildForest = WildForest(3,3)  ## model
-        self.__playerCreature=Creature(30,0,"You")
-        m1 = Creature(10, 10, "Bear")
+        self.__wildForest = WildForest(3,3)  ## class attribute
+        playerCreature=Creature(30,0,"Your Player")
+        m1 = Creature(30, 10, "Bear")
         m2 = Creature(5, 10, "Tiger")
-        self.__wildForest.addCreature(0,0,self.__playerCreature)
+        self.__wildForest.addCreature(0,0,playerCreature)
+        self.__creatureToBeFound = Creature(0, 0, "Brother") ## class attribute
         self.__wildForest.addCreature(0, 1, m1)
         self.__wildForest.addCreature(1, 1, m2)
-        self.__playerXcoordinate = 0
-        self.__playerYcoordinate = 0
-        self.__numberOfSteps = 0
+        self.__wildForest.addCreature(2,2,self.__creatureToBeFound)
+        self.__playerXcoordinate = 0 ## class attribute
+        self.__playerYcoordinate = 0 ## class attribute
+        self.__numberOfSteps = 0 ## class attribute
+
 
 
     def updatePlayerCoordinates(self, newCoordinates):
