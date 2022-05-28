@@ -72,8 +72,8 @@ class WildForestController:
            self.setDefaultViewOfThePlayerCell("Safe")
            WildForestMenuView.printSafeStatus()
         else:
-           self.setDefaultViewOfThePlayerCell("Dangerous")
-           WildForestMenuView.printNeighboringCreatures(neighboringCells)
+           self.setDefaultViewOfThePlayerCell("VoiceHeard")
+           WildForestMenuView.printCreaturesVoice(neighboringCells, self.__creatureToBeFound)
 
 
     def showGameStatus(self):
