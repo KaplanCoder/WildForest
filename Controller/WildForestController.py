@@ -33,6 +33,19 @@ class WildForestController:
         self.__numberOfSteps = 0 ## class attribute
 
 
+    def calculatePlayerScore(self):
+        return 100 / self.__numberOfSteps
+
+    def finishTheGame(self,gameResult):
+        playerScore=0
+        if (gameResult == self.__GAMERESULT.WIN):
+           playerScore=self.calculatePlayerScore()
+           WildForestMenuView.printWinGame(self.__creatureToBeFound.getName())
+        else:
+            assert gameResult == self.__GAMERESULT.LOSE,"Invalid game result!"
+            WildForestMenuView.printLoseGame()
+        WildForestMenuView.printScore(playerScore)
+        exit() # terminate the program
 
     def updatePlayerCoordinates(self, newCoordinates):
         self.__playerXcoordinate = newCoordinates[0]  ## Todo: is it a good approach? Will be checked later
