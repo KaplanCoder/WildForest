@@ -90,6 +90,7 @@ class WildForestController:
 
 
     def showGameStatus(self):
+        self.showPlayerStatus()
         self.makeVisibleToPlayerCell()
         self.showNeighboringCells()
         WildForestMenuView.printStepsTaken(self.__numberOfSteps)
