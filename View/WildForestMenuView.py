@@ -91,15 +91,17 @@ class WildForestMenuView:
 
     @classmethod
     def getMoveFromTheUser(self):
-        print("What is your move?")
-        direction=input("Choose right (d), left (a), up (w) or down (s) : ")
-        if (isinstance(direction,str)):
-           direction=direction.lower()
-           enumList=[movementKey.value for movementKey in Movement]
-           if (direction in enumList):
-               return direction
-        raise Exception("There is no such direction! Choose right (d), left (a), up (w) or down (s).")
-
+        while (True):
+            print("What is your move?")
+            direction=input("Choose right (d), left (a), up (w) or down (s) : ")
+            print() # added for new line
+            if (isinstance(direction,str)):
+               direction=direction.lower()
+               enumList=[movementKey.value for movementKey in Movement]
+               if (direction in enumList):
+                    break # everything is ok
+            print("There is no such direction! Choose right (d), left (a), up (w) or down (s).")
+        return direction
 
 """ Testing
 wild=WildForest(3,3)
