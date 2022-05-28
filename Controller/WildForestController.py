@@ -9,6 +9,8 @@ from enum import Enum
 
 # Todo: It will put creatures to the wild forest randomly.
 
+
+
 class WildForestController:
 
     class __GAMERESULT(Enum):
@@ -17,7 +19,6 @@ class WildForestController:
 
     def __init__(self):
         self.dummyData()
-
 
     def dummyData(self):
         self.__wildForest = WildForest(3,3)  ## class attribute
@@ -123,7 +124,7 @@ class WildForestController:
             self.updateStepsTaken(self.__numberOfSteps + 1) # Todo: steps must be updated at the beginning or end?
             fightInfo=self.__wildForest.moveCreature(
                 self.__playerXcoordinate,self.__playerYcoordinate,moveTypeString)
-        except Exception: # must be hit wall Todo: must be custom exception
+        except Exception: # must be hit wall Todo: must be used as a custom exception
             WildForestMenuView.printHitWall()
             return
         currentEnemy=fightInfo.getEnemy()
@@ -132,6 +133,7 @@ class WildForestController:
         newCoordinates=fightInfo.getNewCoordinates()
         self.updatePlayerCoordinates(newCoordinates)
         self.showFightStatus(fightInfo)
+
 
 
     def start(self):
