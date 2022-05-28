@@ -4,8 +4,7 @@ from View.WildForestMenuView import WildForestMenuView
 from Model.Creature import Creature
 from Model.FightInfo import FIGHTRESULT
 
-# Todo: It will print status of the player
-# Todo: win and lose game status will be added
+
 # Todo: It will put creatures to the wild forest randomly.
 
 class WildForestController:
