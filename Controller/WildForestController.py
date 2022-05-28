@@ -56,6 +56,11 @@ class WildForestController:
         playerCell = self.getPlayerCell()
         playerCell.makeVisible()
 
+    def showPlayerStatus(self):
+        playerCell=self.getPlayerCell()
+        player=playerCell.getCreature()
+        WildForestMenuView.printCreatureStatus(player)
+
     def showNeighboringCells(self):
         """
         It prints the non-empty neighboring cells of the cell where the player is located
