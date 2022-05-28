@@ -1,3 +1,4 @@
+import time
 
 from Model.WildForest import WildForest
 from View.WildForestMenuView import WildForestMenuView
@@ -104,6 +105,7 @@ class WildForestController:
             return # no fight to show
         opponentCreature = fightInfo.getEnemy()
         WildForestMenuView.printFight(opponentCreature)
+        time.sleep(2)  # added to show fighting process
         if (fightResult == FIGHTRESULT.WON):
             WildForestMenuView.printWinFight(opponentCreature)
         elif (fightResult == FIGHTRESULT.LOST):
