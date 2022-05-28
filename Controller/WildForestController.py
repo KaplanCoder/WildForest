@@ -3,6 +3,7 @@ from Model.WildForest import WildForest
 from View.WildForestMenuView import WildForestMenuView
 from Model.Creature import Creature
 from Model.FightInfo import FIGHTRESULT
+from enum import Enum
 
 
 # Todo: It will put creatures to the wild forest randomly.
