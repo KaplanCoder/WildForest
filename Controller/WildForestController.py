@@ -104,6 +104,7 @@ class WildForestController:
 
     def movePlayer(self,moveTypeString):
         try:
+            self.updateStepsTaken(self.__numberOfSteps + 1) # Todo: steps must be updated at the beginning or end?
             fightInfo=self.__wildForest.moveCreature(
                 self.__playerXcoordinate,self.__playerYcoordinate,moveTypeString)
         except Exception: # must be hit wall Todo: must be custom exception
@@ -117,10 +118,11 @@ class WildForestController:
     def start(self):
         WildForestMenuView.printWelcomeMessage()
         while (True):
-            self.showGameStatus()
-            userDirection= WildForestMenuView.getMoveFromTheUser()
-            self.movePlayer(userDirection)
-            self.updateStepsTaken(self.__numberOfSteps + 1)
+                self.showGameStatus()
+                userDirection= WildForestMenuView.getMoveFromTheUser()
+                self.movePlayer(userDirection)
+
+
 
 
 
