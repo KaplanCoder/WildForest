@@ -65,7 +65,10 @@ class WildForestMenuView:
         print("Welcome to our WildForest game! \n"
               "In this game, you are a person who is trying to find his brother in the  wild forest \n"
               "There are dangerous monsters here. So,be careful! \n"
+              "If you win the game, your score will be calculated as (100 / number of steps taken) \n"
+              "If you die and lose the game, your score will be 0"
               )
+        print("-" * 8)
 
     @classmethod
     def printFight(cls,opponentCreature,):
