@@ -1,5 +1,5 @@
 from enum import Enum
-
+from CustomExceptions.InvalidMoveTypeException import InvalidMoveTypeException
 
 class Movement(str,Enum):
     """
@@ -32,4 +32,4 @@ def move(xCoordinate, yCoordinate, moveTypeString):
     elif (moveTypeString == Movement.Up):
         return (xCoordinate, yCoordinate - 1)
     else:
-        raise Exception("Move type is not valid!")  # Todo: custom exception can be used
+        raise InvalidMoveTypeException("Move type is not valid!")  # Todo: custom exception can be used
