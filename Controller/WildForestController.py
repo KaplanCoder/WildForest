@@ -11,7 +11,6 @@ from enum import Enum
 # Todo: It will put creatures to the wild forest randomly.
 
 
-
 class WildForestController:
 
     class __GAMERESULT(Enum):
