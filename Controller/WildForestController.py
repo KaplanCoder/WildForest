@@ -4,6 +4,7 @@ from Model.WildForest import WildForest
 from View.WildForestMenuView import WildForestMenuView
 from Model.Creature import Creature
 from Model.FightInfo import FIGHTRESULT
+from CustomExceptions.InvalidLocationException import InvalidLocationException
 from enum import Enum
 
 
@@ -124,7 +125,7 @@ class WildForestController:
             self.updateStepsTaken(self.__numberOfSteps + 1) # Todo: steps must be updated at the beginning or end?
             fightInfo=self.__wildForest.moveCreature(
                 self.__playerXcoordinate,self.__playerYcoordinate,moveTypeString)
-        except Exception: # must be hit wall Todo: must be used as a custom exception
+        except InvalidLocationException: # must be hit wall Todo: must be used as a custom exception
             WildForestMenuView.printHitWall()
             return
         currentEnemy=fightInfo.getEnemy()
