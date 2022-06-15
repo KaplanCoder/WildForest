@@ -1,4 +1,4 @@
-from Model.Creature import Creature
+from model.Creature import Creature
 
 class Cell:
 

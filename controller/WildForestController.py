@@ -1,10 +1,10 @@
 import time
 
-from Model.WildForest import WildForest
-from View.WildForestMenuView import WildForestMenuView
-from Model.Creature import Creature
-from Model.FightInfo import FIGHTRESULT
-from CustomExceptions.InvalidLocationException import InvalidLocationException
+from model.WildForest import WildForest
+from view.WildForestMenuView import WildForestMenuView
+from model.Creature import Creature
+from model.FightInfo import FIGHTRESULT
+from customExceptions.InvalidLocationException import InvalidLocationException
 from enum import Enum
 
 
@@ -143,9 +143,3 @@ class WildForestController:
                 userDirection= WildForestMenuView.getMoveFromTheUser()
                 self.movePlayer(userDirection)
 
-
-
-
-
-w=WildForestController()
-w.start()

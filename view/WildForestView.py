@@ -1,6 +1,6 @@
-from Model.Cell import Cell
-from Model.Creature import Creature
-from Model.WildForest import WildForest
+from model.Cell import Cell
+from model.Creature import Creature
+from model.WildForest import WildForest
 
 
 class WildForestView:

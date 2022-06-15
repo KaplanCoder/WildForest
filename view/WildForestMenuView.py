@@ -1,8 +1,8 @@
 
-from Model.LocationMover import Movement
-from View.WildForestView import WildForestView
-from Model.WildForest import WildForest
-from Model.Creature import Creature
+from model.LocationMover import Movement
+from view.WildForestView import WildForestView
+from model.WildForest import WildForest
+from model.Creature import Creature
 
 # Todo: it will print fight status after move operation of the wild forest
 

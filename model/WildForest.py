@@ -1,10 +1,10 @@
 import copy
 
-from Model.Creature import Creature
-from Model.LocationMover import move,Movement
-from Model.Cell import Cell
-from Model.FightInfo import FIGHTRESULT, FightInfo
-from CustomExceptions.InvalidLocationException import InvalidLocationException
+from model.Creature import Creature
+from model.LocationMover import move,Movement
+from model.Cell import Cell
+from model.FightInfo import FIGHTRESULT, FightInfo
+from customExceptions.InvalidLocationException import InvalidLocationException
 
 
 class WildForest:

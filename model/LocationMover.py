@@ -1,5 +1,5 @@
 from enum import Enum
-from CustomExceptions.InvalidMoveTypeException import InvalidMoveTypeException
+from customExceptions.InvalidMoveTypeException import InvalidMoveTypeException
 
 class Movement(str,Enum):
     """
