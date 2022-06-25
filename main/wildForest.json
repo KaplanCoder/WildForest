@@ -1,0 +1,44 @@
+
+{
+  "wildForest" : {
+    "rowSize" : 3,
+    "columnSize" : 3
+  },
+  "creatures": [
+    {
+      "name" : "Kaplan",
+      "isPlayer": true,
+      "health": 100,
+      "point": 0,
+      "xCoordinate": 0,
+      "yCoordinate": 0
+    },
+    {
+      "name" : "Brother",
+      "isToBeFound": true,
+      "health": 100,
+      "point": 0,
+      "xCoordinate": 2,
+      "yCoordinate": 2
+    },
+    {
+      "name" : "Bear",
+      "health": 30,
+      "point": 60
+    },{
+      "name" : "Tiger",
+      "health": 40,
+      "point": 80
+    },{
+      "name" : "Lion",
+      "health": 50,
+      "point": 100
+    },{
+      "name" : "Wolf",
+      "health": 20,
+      "point": 40
+    }
+
+  ]
+
+}
