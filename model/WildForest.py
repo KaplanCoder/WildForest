@@ -73,6 +73,7 @@ class WildForest:
             return False
         return True
 
+
     def findCreature(self, rowIndex,columnIndex):
         currentCell=self.getCell(rowIndex,columnIndex)
         if currentCell is not None:
@@ -166,7 +167,6 @@ class WildForest:
         newColumnIndex=newLocations[0] # columnIndex is a x-coordinate
         if not (self.__areIndexesValid(newRowIndex, newColumnIndex)):
             raise InvalidLocationException("New locations are not valid  based on the movement. Move operation is cancelled! ")
-            # TODO: custom exception will be used
         else:
             fightInfo=self.__moveOperation(rowIndex, columnIndex, newRowIndex, newColumnIndex)
             return fightInfo

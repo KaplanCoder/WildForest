@@ -113,7 +113,6 @@ class WildForestController:
             opponentCreature = fightInfo.getEnemy()
             WildForestMenuView.printLoseFight(opponentCreature)
             self.finishTheGame(self.__GAMERESULT.LOSE)
-            #  Todo throw exception or return some warning that game is over
         else:
             assert fightResult == FIGHTRESULT.SCORELESS, "Fight result type is not valid!"
             WildForestMenuView.printFightScorelessStatus(opponentCreature)
@@ -124,7 +123,7 @@ class WildForestController:
             self.updateStepsTaken(self.__numberOfSteps + 1) # Todo: steps must be updated at the beginning or end?
             fightInfo=self.__wildForest.moveCreature(
                 self.__playerXcoordinate,self.__playerYcoordinate,moveTypeString)
-        except InvalidLocationException: # must be hit wall Todo: must be used as a custom exception
+        except InvalidLocationException: # must be hit wall
             WildForestMenuView.printHitWall()
             return
         currentEnemy=fightInfo.getEnemy()

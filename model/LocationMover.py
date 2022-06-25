@@ -32,4 +32,4 @@ def move(xCoordinate, yCoordinate, moveTypeString):
     elif (moveTypeString == Movement.Up):
         return (xCoordinate, yCoordinate - 1)
     else:
-        raise InvalidMoveTypeException("Move type is not valid!")  # Todo: custom exception can be used
+        raise InvalidMoveTypeException("Move type is not valid!")  #
