@@ -1,6 +1,6 @@
-from Model.Cell import Cell
-from Model.Creature import Creature
-from Model.WildForest import WildForest
+from model.Cell import Cell
+from model.Creature import Creature
+from model.WildForest import WildForest
 
 
 class WildForestView:
@@ -13,7 +13,7 @@ class WildForestView:
 
     __columnDelimiterLineSize = 5 # not column delimiter length, but number of lines using the column delimiter !!!
 
-    __cellDefaultLength = 10
+    __cellDefaultLength = 12
 
     @classmethod
     def getStringFormatOfCell(cls, cell, isRowDelimiterAllowed= True):
@@ -26,7 +26,7 @@ class WildForestView:
         :return:
         """
         assert isinstance(cell, Cell), "Cell object's type is not valid. Program is terminated"
-        cellString= str(cell)
+        cellString= str(cell) # calling str magic method of the cell object
         remainingLength= cls.__cellDefaultLength - len(cellString)
         if (remainingLength <= 0):
             cellString = cellString[:cls.__cellDefaultLength]

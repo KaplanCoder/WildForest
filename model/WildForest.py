@@ -1,9 +1,10 @@
 import copy
 
-from Model.Creature import Creature
-from Model.LocationMover import move,Movement
-from Model.Cell import Cell
-from Model.FightInfo import FIGHTRESULT, FightInfo
+from model.Creature import Creature
+from model.LocationMover import move,Movement
+from model.Cell import Cell
+from model.FightInfo import FIGHTRESULT, FightInfo
+from customExceptions.InvalidLocationException import InvalidLocationException
 
 
 class WildForest:
@@ -71,6 +72,7 @@ class WildForest:
         if (columnIndex >= self.getColumnSize() or (columnIndex < 0)):
             return False
         return True
+
 
     def findCreature(self, rowIndex,columnIndex):
         currentCell=self.getCell(rowIndex,columnIndex)
@@ -164,8 +166,7 @@ class WildForest:
         newRowIndex=newLocations[1] # rowIndex is a  y-coordinate
         newColumnIndex=newLocations[0] # columnIndex is a x-coordinate
         if not (self.__areIndexesValid(newRowIndex, newColumnIndex)):
-            raise Exception("New locations are not valid  based on the movement. Move operation is cancelled! ")
-            # TODO: custom exception will be used
+            raise InvalidLocationException("New locations are not valid  based on the movement. Move operation is cancelled! ")
         else:
             fightInfo=self.__moveOperation(rowIndex, columnIndex, newRowIndex, newColumnIndex)
             return fightInfo
