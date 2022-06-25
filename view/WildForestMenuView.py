@@ -62,14 +62,14 @@ class WildForestMenuView:
 
     @classmethod
     def printWelcomeMessage(cls):
-        print("-" * 8)
+        print("-" * 8) # Todo static number is used. Will be refactored later.
         print("Welcome to our WildForest game! \n"
               "In this game, you are a person who is trying to find his brother in the  wild forest \n"
               "There are dangerous monsters here. So,be careful! \n"
               "If you win the game, your score will be calculated as (100 / number of steps taken) \n"
               "If you die and lose the game, your score will be 0"
               )
-        print("-" * 8)
+        print("-" * 8) # Todo static number is used. Will be refactored later.
 
     @classmethod
     def printFight(cls,opponentCreature,):

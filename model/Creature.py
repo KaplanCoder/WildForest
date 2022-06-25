@@ -41,7 +41,7 @@ class Creature:
         Creature fights the another creature \n
         if it wins the fight ---> it earns the enemy's point but its health decreases \n
         if it loses the fight --> it's point is earned by the enemy and it dies.
-        if both creatures have the same health --> noone gains the points and none dies
+        if both creatures have the same health --> no one gains the points and no one dies
         :param anotherCreature:  the creature that the current creature is fighting
         :return: fight result
         """

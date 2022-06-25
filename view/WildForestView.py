@@ -26,7 +26,7 @@ class WildForestView:
         :return:
         """
         assert isinstance(cell, Cell), "Cell object's type is not valid. Program is terminated"
-        cellString= str(cell)
+        cellString= str(cell) # calling str magic method of the cell object
         remainingLength= cls.__cellDefaultLength - len(cellString)
         if (remainingLength <= 0):
             cellString = cellString[:cls.__cellDefaultLength]
