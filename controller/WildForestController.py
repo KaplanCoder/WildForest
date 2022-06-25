@@ -6,6 +6,8 @@ from model.Creature import Creature
 from model.FightInfo import FIGHTRESULT
 from customExceptions.InvalidLocationException import InvalidLocationException
 from enum import Enum
+from model.WildForestFactory import WildForestFactory
+
 
 
 # Todo: It will put creatures to the wild forest randomly.
@@ -17,22 +19,13 @@ class WildForestController:
         WIN=1,
         LOSE=0
 
-    def __init__(self):
-        self.dummyData()
-
-    def dummyData(self):
-        self.__wildForest = WildForest(3,3)  ## class attribute
-        playerCreature=Creature(30,0,"Your Player")
-        m1 = Creature(30, 10, "Bear")
-        m2 = Creature(5, 10, "Tiger")
-        self.__wildForest.addCreature(0,0,playerCreature)
-        self.__creatureToBeFound = Creature(0, 0, "Brother") ## class attribute
-        self.__wildForest.addCreature(0, 1, m1)
-        self.__wildForest.addCreature(1, 1, m2)
-        self.__wildForest.addCreature(2,2,self.__creatureToBeFound)
-        self.__playerXcoordinate = 0 ## class attribute
-        self.__playerYcoordinate = 0 ## class attribute
-        self.__numberOfSteps = 0 ## class attribute
+    def __init__(self,wildForestJsonFileName):
+        wildForestFactory=WildForestFactory(wildForestJsonFileName)
+        self.__wildForest=wildForestFactory.getWildForest()
+        self.__playerXcoordinate =wildForestFactory.getPlayerXcoordinate()
+        self.__playerYcoordinate = wildForestFactory.getPlayerYcoordinate()
+        self.__creatureToBeFound=wildForestFactory.getCreatureToBeFound()
+        self.__numberOfSteps = 0
 
 
     def calculatePlayerScore(self):
