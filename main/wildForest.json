@@ -17,9 +17,7 @@
       "name" : "Brother",
       "isToBeFound": true,
       "health": 100,
-      "point": 0,
-      "xCoordinate": 2,
-      "yCoordinate": 2
+      "point": 0
     },
     {
       "name" : "Bear",
