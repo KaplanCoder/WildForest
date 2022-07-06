@@ -129,7 +129,7 @@ class WildForestController:
 
 
     def start(self):
-        WildForestMenuView.printWelcomeMessage()
+        WildForestMenuView.printWelcomeMessage(self.__creatureToBeFound.getName())
         while (True):
                 self.showGameStatus()
                 userDirection= WildForestMenuView.getMoveFromTheUser()
