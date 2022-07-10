@@ -27,5 +27,10 @@ health always wins the fight and gets the point of the lost creature but  its he
 
 ## Screenshots
 
+![MenuScreen!](screenshots/MenuScreen.png)
+![FightScreen!](screenshots/FightScreen.png)
+
+
+
 
 
