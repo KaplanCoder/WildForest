@@ -61,11 +61,12 @@ class WildForestMenuView:
             print(str(currentCreature) + " voice heard nearby!")
 
     @classmethod
-    def printWelcomeMessage(cls):
+    def printWelcomeMessage(cls,creatureToBeFoundName):
         print("-" * 8) # Todo static number is used. Will be refactored later.
         print("Welcome to our WildForest game! \n"
-              "In this game, you are a person who is trying to find his brother in the  wild forest \n"
-              "There are dangerous monsters here. So,be careful! \n"
+              "In this game, you are a person who is trying to find " + creatureToBeFoundName
+              + " in the  wild forest \n"
+              "There are dangerous creatures here. So,be careful! \n"
               "If you win the game, your score will be calculated as (100 / number of steps taken) \n"
               "If you die and lose the game, your score will be 0"
               )
